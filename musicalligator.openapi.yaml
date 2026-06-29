@@ -59,8 +59,12 @@ paths:
               - email
               - password
       responses:
-        '200':
-          description: Форма ответа не подтверждена.
+        '201':
+          description: Артист создан.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdResponse'
   /auth/sign_up:
     post:
       tags:
@@ -81,8 +85,12 @@ paths:
               - email
               - password
       responses:
-        '200':
-          description: Форма ответа не подтверждена.
+        '201':
+          description: Лейбл создан.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LabelCreateResponse'
   /auth/send_confirm_code:
     post:
       tags:
@@ -175,7 +183,11 @@ paths:
       summary: Проверить токен
       responses:
         '200':
-          description: Форма ответа не подтверждена.
+          description: Сессия активна.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthAuthenticateResponse'
   /releases:
     post:
       tags:
@@ -194,17 +206,14 @@ paths:
                   type: string
                   enum:
                   - DRAFT
-                  - ALL
                   - ERROR
                   - MODERATE
                   - WAITING
-                  - SHIPPING
                   - RELEASED
                   - TASK
                   - WORKING
                   - UPLOADED
                   - REMOVED
-                  - DELETED
                   - EDIT
                   - PARTIAL_UPLOAD
                 limit:
@@ -218,8 +227,18 @@ paths:
                   type: string
                   format: date
       responses:
-        '200':
-          description: Форма ответа не подтверждена.
+        '201':
+          description: Релизы.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleasesListResponse'
+        '400':
+          description: Ошибка запроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /releases/create:
     post:
       tags:
@@ -243,6 +262,8 @@ paths:
       tags:
       - Releases
       summary: Справочник фильтров релизов (жанры, типы, языки)
+      parameters:
+      - $ref: '#/components/parameters/XLang'
       responses:
         '200':
           description: Справочник.
@@ -250,6 +271,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReleasesFiltersResponse'
+        '400':
+          description: Ошибка запроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /releases/update/track:
     get:
       tags:
@@ -296,8 +323,16 @@ paths:
       responses:
         '200':
           description: Релиз обновлён.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
         '400':
           description: Ошибка валидации.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
     delete:
       tags:
       - Releases
@@ -407,6 +442,16 @@ paths:
       responses:
         '200':
           description: Трек сохранён.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+        '400':
+          description: Ошибка валидации.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
     delete:
       tags:
       - Releases
@@ -480,6 +525,7 @@ paths:
       - Platforms
       summary: Список стриминговых площадок
       parameters:
+      - $ref: '#/components/parameters/XLang'
       - name: withProviders
         in: query
         required: false
@@ -492,6 +538,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StreamingPlatformsResponse'
+        '400':
+          description: Ошибка запроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /platform/platforms/social:
     get:
       tags:
@@ -516,6 +568,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CountriesResponse'
+        '400':
+          description: Ошибка запроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /artists:
     get:
       tags:
@@ -537,27 +595,20 @@ paths:
         required: false
         schema:
           type: integer
-      - name: ids
+      - name: ids[]
         in: query
         required: false
         schema:
-          type: string
-        description: Список ID через запятую.
+          type: array
+          items:
+            type: integer
       responses:
         '200':
           description: Артисты.
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/NamedRef'
-                  statusCode:
-                    type: integer
-                    example: 200
+                $ref: '#/components/schemas/SearchEntitiesResponse'
     post:
       tags:
       - Artists
@@ -567,19 +618,14 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                platforms:
-                  type: array
-                  items:
-                    type: object
-              required:
-              - name
+              $ref: '#/components/schemas/ArtistCreate'
       responses:
-        '200':
-          description: Форма ответа не подтверждена.
+        '201':
+          description: Артист создан.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdResponse'
   /artists/{id}:
     parameters:
     - name: id
@@ -594,14 +640,18 @@ paths:
       - Artists
       summary: Обновить артиста
       requestBody:
-        description: Тело запроса не подтверждено.
+        required: true
         content:
           application/json:
             schema:
-              type: object
+              $ref: '#/components/schemas/ArtistCreate'
       responses:
         '200':
-          description: Форма ответа не подтверждена.
+          description: Артист обновлён.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
     delete:
       tags:
       - Artists
@@ -642,15 +692,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/NamedRef'
-                  statusCode:
-                    type: integer
-                    example: 200
+                $ref: '#/components/schemas/SearchEntitiesResponse'
     post:
       tags:
       - Persons
@@ -743,17 +785,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  data:
-                    type: object
-                    properties:
-                      data:
-                        type: array
-                        items:
-                          $ref: '#/components/schemas/NamedRef'
-                  statusCode:
-                    type: integer
+                $ref: '#/components/schemas/LabelsSearchResponse'
     post:
       tags:
       - Labels
@@ -916,7 +948,11 @@ paths:
       summary: Доступные фильтры статистики
       responses:
         '200':
-          description: Форма ответа не подтверждена.
+          description: Фильтры статистики.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatisticsFiltersResponse'
   /finance/reports:
     post:
       tags:
@@ -994,7 +1030,11 @@ paths:
       summary: Фильтры отчётов
       responses:
         '200':
-          description: Форма ответа не подтверждена.
+          description: Фильтры отчётов.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinanceReportsFiltersResponse'
   /finance/transactions:
     post:
       tags:
@@ -1063,7 +1103,11 @@ paths:
       summary: Баланс
       responses:
         '200':
-          description: Форма ответа не подтверждена.
+          description: Баланс.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinanceBalanceResponse'
   /client:
     get:
       tags:
@@ -1072,6 +1116,12 @@ paths:
       responses:
         '200':
           description: Форма ответа не подтверждена.
+        '404':
+          description: Не найдено.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /client/avatar:
     post:
       tags:
@@ -1106,6 +1156,12 @@ paths:
       responses:
         '200':
           description: Форма ответа не подтверждена.
+        '404':
+          description: Не найдено.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /client/bank_data:
     post:
       tags:
@@ -1155,7 +1211,11 @@ paths:
       summary: Список договоров
       responses:
         '200':
-          description: Форма ответа не подтверждена.
+          description: Данные договора.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractDocumentResponse'
     post:
       tags:
       - Client
@@ -1176,7 +1236,11 @@ paths:
       summary: Типы пакетов
       responses:
         '200':
-          description: Форма ответа не подтверждена.
+          description: Типы пакетов.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageTypesResponse'
   /packages:
     get:
       tags:
@@ -1195,7 +1259,11 @@ paths:
           type: string
       responses:
         '200':
-          description: Форма ответа не подтверждена.
+          description: Список пакетов.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackagesResponse'
   /packages/my:
     get:
       tags:
@@ -1209,7 +1277,11 @@ paths:
           type: integer
       responses:
         '200':
-          description: Форма ответа не подтверждена.
+          description: Мои пакеты.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackagesResponse'
   /packages/moderation:
     get:
       tags:
@@ -1398,7 +1470,11 @@ paths:
       summary: Типы обращений
       responses:
         '200':
-          description: Форма ответа не подтверждена.
+          description: Типы обращений.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportTypesResponse'
   /locale:
     get:
       tags:
@@ -1406,7 +1482,11 @@ paths:
       summary: Локали
       responses:
         '200':
-          description: Форма ответа не подтверждена.
+          description: Локали.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocaleResponse'
   /notifications:
     get:
       tags:
@@ -1414,7 +1494,11 @@ paths:
       summary: Уведомления
       responses:
         '200':
-          description: Форма ответа не подтверждена.
+          description: Уведомления.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationsResponse'
   /page:
     get:
       tags:
@@ -1422,8 +1506,22 @@ paths:
       summary: Страница (контент)
       responses:
         '200':
-          description: Форма ответа не подтверждена.
+          description: Страницы.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagesResponse'
 components:
+  parameters:
+    XLang:
+      name: X-Lang
+      in: header
+      required: true
+      schema:
+        type: string
+        enum:
+        - RU
+        - EN
   securitySchemes:
     tokenAuth:
       type: apiKey
@@ -1431,12 +1529,442 @@ components:
       name: authorization
       description: Токен сессии (UUID), передаётся в заголовке authorization.
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+        message:
+          type: string
+        errors:
+          oneOf:
+          - type: string
+          - type: array
+            items:
+              type: string
+          - type: object
+            additionalProperties: {}
+    AuthBalance:
+      type: object
+      properties:
+        amount:
+          type: number
+        currency:
+          type: string
+    AuthAccount:
+      type: object
+      properties:
+        clientId:
+          type: integer
+        level:
+          type: string
+        session:
+          type: string
+        dtCreate:
+          type: string
+        role:
+          type: string
+        status:
+          type: string
+        contractStatus:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        username:
+          type: string
+        middleName:
+          type: string
+        documentRequred:
+          type: boolean
+        documentUrl:
+          type: string
+          nullable: true
+        avatarUrl:
+          type: string
+        phone:
+          type: string
+        balance:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthBalance'
+        contractData:
+          type: object
+          additionalProperties: {}
+        contractType:
+          type: string
+        royalty:
+          type: integer
+    AuthAuthenticateResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            passwordToken:
+              type: string
+              nullable: true
+            account:
+              $ref: '#/components/schemas/AuthAccount'
+            login:
+              type: string
+        statusCode:
+          type: integer
+          example: 200
+    EntityWithPlatforms:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        platforms:
+          type: array
+          items:
+            $ref: '#/components/schemas/PersonPlatform'
+    SearchEntitiesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityWithPlatforms'
+        statusCode:
+          type: integer
+          example: 200
+    LabelSearchItem:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        clientId:
+          type: integer
+        level:
+          type: string
+    LabelsSearchResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/LabelSearchItem'
+            count:
+              type: integer
+        statusCode:
+          type: integer
+          example: 200
+    LabelCreateResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/LabelSearchItem'
+        statusCode:
+          type: integer
+          example: 201
+    ReleasesListResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            count:
+              type: integer
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/Release'
+        statusCode:
+          type: integer
+          example: 201
+    StatisticsFiltersResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            platformIds:
+              type: array
+              items:
+                type: integer
+            countryIds:
+              type: array
+              items:
+                type: integer
+        statusCode:
+          type: integer
+          example: 200
+    FinanceArtistFilter:
+      type: object
+      properties:
+        artistId:
+          type: integer
+        name:
+          type: string
+    FinancePeriodFilter:
+      type: object
+      properties:
+        periodId:
+          type: integer
+        name:
+          type: string
+    FinancePlatformFilter:
+      type: object
+      properties:
+        platformId:
+          type: integer
+        name:
+          type: string
+    FinanceReportsFiltersResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            artists:
+              type: array
+              items:
+                $ref: '#/components/schemas/FinanceArtistFilter'
+            periods:
+              type: array
+              items:
+                $ref: '#/components/schemas/FinancePeriodFilter'
+            platforms:
+              type: array
+              items:
+                $ref: '#/components/schemas/FinancePlatformFilter'
+            contries:
+              type: array
+              items: {}
+        statusCode:
+          type: integer
+          example: 200
+    FinanceBalanceResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties:
+            type: number
+        statusCode:
+          type: integer
+          example: 200
+    ContractDocument:
+      type: object
+      properties:
+        contractId:
+          type: integer
+        email:
+          type: string
+        documentRequired:
+          type: boolean
+        fistNamme:
+          type: string
+        lastName:
+          type: string
+        locale:
+          type: string
+        contractType:
+          type: string
+        contractUid:
+          type: string
+          nullable: true
+        clientData:
+          type: object
+          additionalProperties: {}
+        dtCreate:
+          type: string
+        dtConfirm:
+          type: string
+        dtSign:
+          type: string
+        status:
+          type: string
+        clientStatus:
+          type: string
+        signature:
+          type: string
+        clientId:
+          type: integer
+        phone:
+          type: string
+        royalty:
+          type: integer
+        templateId:
+          type: integer
+    ContractDocumentResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/ContractDocument'
+        statusCode:
+          type: integer
+          example: 200
+    PackageType:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        nameEn:
+          type: string
+        parentId:
+          type: integer
+          nullable: true
+        shortName:
+          type: string
+    PackageTypesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PackageType'
+        statusCode:
+          type: integer
+          example: 200
+    PackagesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items: {}
+        statusCode:
+          type: integer
+          example: 200
+    SupportType:
+      type: object
+      properties:
+        caseTypeId:
+          type: integer
+        name:
+          type: string
+    SupportTypesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupportType'
+        statusCode:
+          type: integer
+          example: 200
+    LocaleResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
+        statusCode:
+          type: integer
+          example: 200
+    NotificationItem:
+      type: object
+      properties:
+        id:
+          type: integer
+        clientId:
+          type: integer
+        dtCreate:
+          type: string
+        isRead:
+          type: boolean
+        type:
+          type: string
+        data:
+          type: object
+          additionalProperties: {}
+    NotificationsResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/NotificationItem'
+            count:
+              type: integer
+        statusCode:
+          type: integer
+          example: 200
+    PageTextAttributes:
+      type: object
+      properties:
+        align:
+          type: string
+          nullable: true
+        bold:
+          type: boolean
+          nullable: true
+        color:
+          type: string
+          nullable: true
+        header:
+          type: integer
+          nullable: true
+        link:
+          type: string
+          nullable: true
+    PageTextBlock:
+      type: object
+      properties:
+        insert:
+          type: string
+        attributes:
+          $ref: '#/components/schemas/PageTextAttributes'
+    PageItem:
+      type: object
+      properties:
+        id:
+          type: integer
+        lang:
+          type: string
+        published:
+          type: boolean
+        title:
+          type: string
+        url:
+          type: string
+        html:
+          type: string
+        data:
+          type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/PageTextBlock'
+    PagesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PageItem'
+        statusCode:
+          type: integer
+          example: 200
     Genre:
       type: object
       properties:
         genreId:
           type: integer
           example: 92
+        subGenreId:
+          type: integer
+          nullable: true
+          description: ID поджанра. Если выбран поджанр, genreId содержит ID родительского жанра.
       required:
       - genreId
     NamedRef:
@@ -1588,11 +2116,8 @@ components:
         additionalGenres:
           type: array
           items:
-            oneOf:
-            - type: integer
-            - $ref: '#/components/schemas/Genre'
-          description: Внутри release-payload приходит как [id], в отдельном PUT трека — как [{ genreId
-            }].
+            $ref: '#/components/schemas/Genre'
+          description: Дополнительные жанры. Если выбран поджанр, элемент передаётся как { genreId, subGenreId }.
         language:
           type: integer
           description: ID языка (например, 7 = русский).
@@ -1716,6 +2241,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Genre'
+          description: Дополнительные жанры. Если выбран поджанр, элемент передаётся как { genreId, subGenreId }.
         label:
           type: string
           example: AURA MUSIC
@@ -1753,6 +2279,7 @@ components:
           description: Путь к обложке в хранилище.
         client:
           $ref: '#/components/schemas/ClientRef'
+          nullable: true
         artist:
           type: integer
           description: ID основного артиста (дублирует MAIN из artists[]).
@@ -1770,11 +2297,13 @@ components:
           type: array
           items:
             type: integer
-          description: ID площадок из /platform/platforms/streaming.
+          description: ID площадок из /platform/platforms/streaming. При сохранении список может дополняться
+            связанными площадками. Некорректный набор возвращает RELEASE_INCORRECT_STREAMING_PLATFORMS.
         countries:
           type: array
           items:
             type: integer
+          description: Пустой массив означает все страны.
         level:
           type: string
           enum:
@@ -1795,8 +2324,10 @@ components:
           type: boolean
           example: false
         contractSigned:
-          type: boolean
-          example: false
+          oneOf:
+          - type: boolean
+          - type: integer
+          example: 0
         tracks:
           type: array
           items:
@@ -1809,7 +2340,9 @@ components:
       - releaseDate
       - genre
       - artists
-      description: Тело PUT /releases/{id}. Frontend-внутренние поля (_*) опущены.
+      description: Тело PUT /releases/{id}. Для SINGLE с одним треком поля artists, title, artist,
+        trackVersion, advArtists, featArtists, genres, additionalGenres и genre у релиза и трека
+        должны совпадать. Фронтовый флаг _single в ответе GET не возвращается.
     TrackResponse:
       description: 'Объект трека в ответе: Track плюс серверные поля.'
       allOf:
@@ -1927,7 +2460,20 @@ components:
         platformId:
           type: string
           description: Внешний ID профиля (может быть пустым).
-      description: Привязка площадки при создании/редактировании персоны.
+      description: Привязка площадки при создании/редактировании артиста или персоны.
+    ArtistCreate:
+      type: object
+      properties:
+        name:
+          type: string
+        platforms:
+          type: array
+          items:
+            $ref: '#/components/schemas/PersonPlatform'
+          description: Для Apple Music и Spotify передаётся platformId; если профиля нет, platformId пустая строка.
+      required:
+      - name
+      - platforms
     PersonCreate:
       type: object
       properties:
@@ -1954,6 +2500,12 @@ components:
           type: integer
           example: 201
       description: Возвращается только id созданной сущности.
+    StatusResponse:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          example: 200
     Role:
       type: object
       properties:
@@ -2015,12 +2567,14 @@ components:
           type: string
         urlIcon:
           type: string
+          nullable: true
         releaseTypes:
           type: array
           items:
             $ref: '#/components/schemas/ReleaseTypeRef'
         domains:
           type: array
+          nullable: true
           items:
             type: string
     ReleaseTypeRef:
@@ -2091,8 +2645,10 @@ components:
           type: boolean
         countryGroup:
           type: string
+          nullable: true
         countryGroupEn:
           type: string
+          nullable: true
     CountriesResponse:
       type: object
       properties:
