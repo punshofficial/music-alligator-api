@@ -20,21 +20,24 @@
 ## Releases
 
 - ✅ `POST /releases` — список и поиск по `search`, 201-схема добавлена
-- ✅ `POST /releases/create` — создан тестовый draft-релиз
+- ✅ `POST /releases/create` — создан тестовый draft-релиз; после проверок удалён
 - ✅ `GET /releases/filters` — 200/400-схемы добавлены
 - ⛔ `GET /releases/update/track` — служебный endpoint
 - ✅ `GET /releases/{id}` — 200-схема подтверждена по `releaseId` из списка
 - ✅ `PUT /releases/{id}` — проверено на тестовом draft-релизе
-- ⛔ `DELETE /releases/{id}`
+- ✅ `Release/TrackResponse` — ключи ответа тестового релиза сверены со схемами; добавлены `client`, `text`, `isFromMigration`, `artists[].platforms`
+- ✅ `DELETE /releases/{id}` — проверено на тестовом релизе, 200 `StatusResponse`; последующий GET вернул 404 `RELEASE_NOT_FOUND`
 - ⛔ `PUT /releases/{id}/status/moderate`
-- ❌ `POST /releases/{id}/cover` — тестировать только на тестовом релизе
-- ❌ `POST /releases/{id}/tracks/order` — тестировать только на тестовом релизе
+- ✅ `GET /ddex/release/{id}` — статусы выгрузки по площадкам, проверено на draft/uploaded/released релизах
+- ✅ `POST /releases/{id}/cover` — проверено на тестовом релизе, multipart `file`, 201 `MediaUploadResponse`
+- ✅ `POST /releases/{id}/tracks/order` — проверено на тестовом релизе, `order: [{ trackOrder, trackId }]`, 201 `StatusResponse`
 - ✅ `PUT /releases/{id}/tracks/{trackId}` — проверено на тестовом draft-релизе
 - ✅ `genre/additionalGenres` — формат подтверждён по фронту и тестовому релизу: основной жанр `{ genreId }` или `{ genreId, subGenreId }`, дополнительные жанры массивом таких объектов
 - ✅ `streamingPlatforms` — при сохранении тестового релиза выбранные площадки могут дополняться связанными ID (например, Shazam/KION Music)
-- ⛔ `DELETE /releases/{id}/tracks/{trackId}`
-- ❌ `POST /releases/{id}/tracks/{trackId}/upload` — тестировать только на тестовом релизе
+- ✅ `DELETE /releases/{id}/tracks/{trackId}` — проверено на втором треке тестового релиза, 200 `StatusResponse`
+- ✅ `POST /releases/{id}/tracks/{trackId}/upload` — проверено на тестовом релизе, multipart `file`, 201 `MediaUploadResponse`; после WAV сервер добавляет mp3
 - ⛔ `DELETE /releases/{id}/tracks/{trackId}/upload`
+- ✅ `POST /releases/{id}/tracks` — создан второй трек в тестовом релизе, 201 `CreateTrackResponse`
 
 ## Media
 

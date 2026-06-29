@@ -308,6 +308,10 @@ paths:
                 $ref: '#/components/schemas/ReleaseResponse'
         '404':
           description: Релиз не найден.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
     put:
       tags:
       - Releases
@@ -340,6 +344,10 @@ paths:
       responses:
         '200':
           description: Релиз удалён.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
   /releases/{id}/status/moderate:
     put:
       tags:
@@ -356,6 +364,26 @@ paths:
       responses:
         '200':
           description: Релиз отправлен на модерацию.
+  /ddex/release/{id}:
+    get:
+      tags:
+      - Releases
+      summary: Статусы выгрузки релиза по площадкам
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID релиза.
+      responses:
+        '200':
+          description: Статусы выгрузки.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseUploadStatusesResponse'
   /releases/{id}/cover:
     post:
       tags:
@@ -376,13 +404,17 @@ paths:
             schema:
               type: object
               properties:
-                image:
+                file:
                   type: string
                   format: binary
                   description: Файл обложки.
       responses:
-        '200':
+        '201':
           description: Обложка загружена.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaUploadResponse'
   /releases/{id}/tracks/order:
     post:
       tags:
@@ -406,13 +438,37 @@ paths:
                 order:
                   type: array
                   items:
-                    type: integer
+                    $ref: '#/components/schemas/TrackOrderItem'
               required:
               - order
-              description: Массив trackId в нужном порядке.
+              description: Порядок треков.
       responses:
-        '200':
-          description: Форма ответа не подтверждена.
+        '201':
+          description: Порядок сохранён.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
+  /releases/{id}/tracks:
+    post:
+      tags:
+      - Releases
+      summary: Создать трек в релизе
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID релиза.
+      responses:
+        '201':
+          description: Трек создан.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTrackResponse'
   /releases/{id}/tracks/{trackId}:
     parameters:
     - name: id
@@ -459,6 +515,10 @@ paths:
       responses:
         '200':
           description: Трек удалён.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
   /releases/{id}/tracks/{trackId}/upload:
     parameters:
     - name: id
@@ -486,13 +546,17 @@ paths:
             schema:
               type: object
               properties:
-                audio:
+                file:
                   type: string
                   format: binary
                   description: Аудио/видео файл трека.
       responses:
-        '200':
+        '201':
           description: Файл загружен.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaUploadResponse'
     delete:
       tags:
       - Releases
@@ -1987,6 +2051,11 @@ components:
           - MAIN
           - FEAT
           example: MAIN
+        platforms:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlatformBinding'
+          description: В ответе трека у артистов могут приходить привязки Apple Music/Spotify.
       required:
       - id
       - role
@@ -2055,9 +2124,23 @@ components:
         id:
           type: integer
           example: 58474
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        nickName:
+          type: string
+        locale:
+          type: string
+          example: RU
       required:
       - id
-      description: Клиент (владелец релиза). В ответе приходит также профиль; здесь оставлен только id.
+      description: Клиент (владелец релиза).
     Media:
       type: object
       properties:
@@ -2076,6 +2159,76 @@ components:
           - wav
           - mp3
       description: Медиафайл релиза/трека.
+    MediaUploadResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Media'
+        statusCode:
+          type: integer
+          example: 201
+      description: Ответ загрузки обложки или аудиофайла.
+    TrackOrderItem:
+      type: object
+      properties:
+        trackOrder:
+          type: integer
+          example: 0
+        trackId:
+          type: integer
+          format: int64
+          example: 910553
+      required:
+      - trackOrder
+      - trackId
+      description: Позиция трека при сортировке.
+    CreateTrackResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            trackId:
+              type: integer
+              format: int64
+              example: 910564
+            copyrights:
+              type: integer
+              example: 100
+            related:
+              type: integer
+              example: 100
+        statusCode:
+          type: integer
+          example: 201
+      description: Ответ POST /releases/{id}/tracks.
+    ReleaseUploadStatusItem:
+      type: object
+      properties:
+        streamingPlatformId:
+          type: integer
+          description: ID площадки.
+        status:
+          type: string
+          enum:
+          - UPLOADED
+          - WAITING_FOR_DELIVERY
+          - ERROR
+          description: Статус выгрузки. Фронт приводит updated к uploaded.
+        userError:
+          type: string
+          nullable: true
+      description: Элемент статуса выгрузки релиза. Поля восстановлены по frontend-коду.
+    ReleaseUploadStatusesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReleaseUploadStatusItem'
+        statusCode:
+          type: integer
+          example: 200
     Checklist:
       type: object
       properties:
@@ -2143,6 +2296,10 @@ components:
         karaoke:
           type: string
           nullable: true
+        text:
+          type: string
+          nullable: true
+          description: Текст/лирика трека.
         recordingYear:
           type: integer
           example: 2026
@@ -2377,16 +2534,18 @@ components:
           checklist:
             $ref: '#/components/schemas/Checklist'
     Release:
-      description: 'Объект релиза в ответе: ReleaseUpdate плюс серверные поля. releaseDate в ответе приходит
-        как date-time.'
+      description: 'Объект релиза в ответе: ReleaseUpdate плюс серверные поля.'
       allOf:
       - $ref: '#/components/schemas/ReleaseUpdate'
       - type: object
         properties:
           releaseDate:
-            type: string
-            format: date-time
-            example: '2026-08-07T00:00:00Z'
+            oneOf:
+            - type: string
+              format: date
+            - type: string
+              format: date-time
+            example: '2026-08-07'
           media:
             type: array
             items:

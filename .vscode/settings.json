@@ -1,0 +1,5 @@
+{
+    "yaml.schemas": {
+        "swaggerviewer:openapi": "file:///Users/punsh/Projects/Github/music-alligator-api/musicalligator.openapi.yaml"
+    }
+}
