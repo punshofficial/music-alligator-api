@@ -2,89 +2,85 @@
 
 ## Легенда
 
-- ✅ проверено и описано
-- 🟡 частично проверено
+- ✅ готово
+- 🟡 частично
 - ❌ не проверено
-- ⛔ не трогать без отдельного подтверждения
-
-Исключённые из текущего покрытия endpoint'ы вынесены в `API_EXCLUDED.md`.
+- ⛔ не трогать
 
 ## Auth
 
-- ✅ `GET /auth/authenticate` — 200-схема подтверждена текущей сессией
-- 🟡 `POST /auth/sign_in` — request/response уточнены по фронту: `{ login, password }` -> `sessionToken`; не вызывали без тестовых учётных данных
+- ✅ `GET /auth/authenticate`
+- 🟡 `POST /auth/sign_in`
 
 ## Releases
 
-- ✅ `POST /releases` — список и поиск по `search`, 201-схема добавлена; пример запроса сверён с фронтом: `search`, `limit`, `skip`, `startDate`, `endDate`, `startDateRelease`, `endDateRelease`
-- ✅ `POST /releases/create` — создан тестовый draft-релиз; после проверок удалён
-- ✅ `GET /releases/filters` — 200/400-схемы добавлены
-- ✅ `GET /releases/update/track` — отсутствует на текущем API-хосте, удалён из OpenAPI
-- ✅ `GET /releases/{id}` — 200-схема подтверждена по `releaseId` из списка
-- ✅ `PUT /releases/{id}` — проверено на тестовом draft-релизе
-- ✅ `Release/TrackResponse` — ключи ответа тестового релиза сверены со схемами; добавлены `client`, `text`, `isFromMigration`, `artists[].platforms`
-- ✅ `DELETE /releases/{id}` — проверено на тестовом релизе, 200 `StatusResponse`; последующий GET вернул 404 `RELEASE_NOT_FOUND`
-- 🟡 `PUT /releases/{id}/status/moderate` — не вызывали; владелец подтвердил как рабочий
-- ✅ `GET /ddex/release/{id}` — статусы выгрузки по площадкам, проверено на draft/uploaded/released релизах
-- ✅ `POST /releases/{id}/cover` — проверено на тестовом релизе, multipart `file`, 201 `MediaUploadResponse`
-- ✅ `POST /releases/{id}/tracks/order` — проверено на тестовом релизе, `order: [{ trackOrder, trackId }]`, 201 `StatusResponse`
-- ✅ `PUT /releases/{id}/tracks/{trackId}` — проверено на тестовом draft-релизе
-- ✅ `genre/additionalGenres` — формат подтверждён по фронту и тестовому релизу: основной жанр `{ genreId }` или `{ genreId, subGenreId }`, дополнительные жанры массивом таких объектов
-- ✅ `streamingPlatforms` — при сохранении тестового релиза выбранные площадки могут дополняться связанными ID (например, Shazam/KION Music)
-- ✅ `DELETE /releases/{id}/tracks/{trackId}` — проверено на втором треке тестового релиза, 200 `StatusResponse`
-- ✅ `POST /releases/{id}/tracks/{trackId}/upload` — проверено на тестовом релизе, multipart `file`, 201 `MediaUploadResponse`; после WAV сервер добавляет mp3
-- ✅ `DELETE /releases/{id}/tracks/{trackId}/upload` — проверено на временном тестовом релизе, 200 `StatusResponse`; media[] очищается
-- ✅ `POST /releases/{id}/tracks` — создан второй трек в тестовом релизе, 201 `CreateTrackResponse`
+- ✅ `POST /releases`
+- ✅ `POST /releases/create`
+- ✅ `GET /releases/filters`
+- ✅ `GET /releases/{id}`
+- ✅ `PUT /releases/{id}`
+- ✅ `DELETE /releases/{id}`
+- 🟡 `PUT /releases/{id}/status/moderate`
+- ✅ `GET /ddex/release/{id}`
+- ✅ `POST /releases/{id}/cover`
+- ✅ `POST /releases/{id}/tracks`
+- ✅ `POST /releases/{id}/tracks/order`
+- ✅ `PUT /releases/{id}/tracks/{trackId}`
+- ✅ `DELETE /releases/{id}/tracks/{trackId}`
+- ✅ `POST /releases/{id}/tracks/{trackId}/upload`
+- ✅ `DELETE /releases/{id}/tracks/{trackId}/upload`
+- ✅ `Release/TrackResponse`
+- ✅ `genre/additionalGenres`
+- ✅ `streamingPlatforms`
 
 ## Platforms
 
-- ✅ `GET /platform/platforms/streaming` — 200/400-схемы добавлены
-- ✅ `GET /platform/platforms/social` — 200-схема добавлена
-- ✅ `GET /platform/countries` — 200/400-схемы добавлены
+- ✅ `GET /platform/platforms/streaming`
+- ✅ `GET /platform/platforms/social`
+- ✅ `GET /platform/countries`
 
 ## Artists
 
-- ✅ `GET /artists` — 200-схема добавлена
-- ✅ `POST /artists` — создан тестовый артист
-- ✅ `PUT /artists/{id}` — проверено на тестовом артисте, Apple Music/Spotify с пустым `platformId`
-- ✅ `DELETE /artists/{id}` — тестовый артист Codex удалён, 200 `StatusResponse`
+- ✅ `GET /artists`
+- ✅ `POST /artists`
+- ✅ `PUT /artists/{id}`
+- ✅ `DELETE /artists/{id}`
 
 ## Persons
 
-- ✅ `GET /persons` — 200-схема добавлена
-- ✅ `GET /persons/person-data` — 200-схема добавлена
-- ✅ `POST /persons` — создан тестовый участник
-- ✅ `PUT /persons/{id}` — проверено на тестовой персоне Codex, 200 `StatusResponse`
-- ✅ `DELETE /persons/{id}` — тестовая персона Codex удалена, 200 `StatusResponse`
+- ✅ `GET /persons`
+- ✅ `GET /persons/person-data`
+- ✅ `POST /persons`
+- ✅ `PUT /persons/{id}`
+- ✅ `DELETE /persons/{id}`
 
 ## Labels
 
-- ✅ `GET /labels` — 200-схема добавлена
-- ✅ `POST /labels` — создан тестовый лейбл
-- ✅ `PUT /labels/{id}` — проверено на тестовом лейбле Codex, 200 `StatusResponse`
+- ✅ `GET /labels`
+- ✅ `POST /labels`
+- ✅ `PUT /labels/{id}`
 
 ## Statistics
 
-- ✅ `GET /statistics/filters` — подтверждено: `platformIds`, `countryIds`
-- ✅ `POST /statistics` — подтверждено: `201`, агрегированные строки по `aggs`
-- ✅ `POST /statistics` по треку — проверено с `filters: [{ field: "id_m_track", value: 541524 }]`, возвращает дневные `count`, `dt_listen`, `id_m_track`, `nm_track`, `isrc`
+- ✅ `GET /statistics/filters`
+- ✅ `POST /statistics`
 
 ## Finance
 
-- ✅ `GET /finance/reports/filters` — подтверждено: artists, periods, platforms, `contries`
-- ✅ `POST /finance/reports/filters` — подтверждено с `X-Lang: RU`: platforms, artists, countries, periods
-- ✅ `GET /finance/balance` — подтверждено: объект валют `RUB`/`EUR`
-- ✅ `GET /finance/reports/file/{type}` — подтверждено на `csv`, query-массивы передаются как `periodIds[]=25`
-- ✅ `GET /finance/transactions/invoice/{currency}/history` — подтверждено для `RUB`, 200
-- ✅ `POST /finance/reports` — подтверждено: `201`, wrapper `{ count, data }`
-- ✅ `POST /finance/reports/detailed` — подтверждено: `201`, wrapper `{ count, data }`
-- ✅ `POST /finance/transactions` — подтверждено: `201`, wrapper `{ count, data }`
+- ✅ `GET /finance/reports/filters`
+- ✅ `POST /finance/reports/filters`
+- ✅ `GET /finance/balance`
+- ✅ `GET /finance/reports/file/{type}`
+- ✅ `GET /finance/transactions/invoice/{currency}/history`
+- ✅ `POST /finance/reports`
+- ✅ `POST /finance/reports/detailed`
+- ✅ `POST /finance/transactions`
 
 ## Client
 
-- 🟡 `GET /client` — подтверждён 404
-- 🟡 `GET /client/contract_data` — подтверждён 404
-- ✅ `GET /documents/contracts` — 200-схема добавлена
+- 🟡 `GET /client` (404)
+- 🟡 `GET /client/contract_data` (404)
+- ✅ `GET /documents/contracts`
 - ⛔ `POST /client/avatar`
 - ⛔ `DELETE /client/avatar`
 - ⛔ `POST /client/bank_data`
@@ -93,15 +89,15 @@
 
 ## Support
 
-- 🟡 `GET /support/types` — 200-схема добавлена, низкий приоритет
-- ❌ `GET /support/cases/{id}` — низкий приоритет
-- 🟡 `POST /support` — низкий приоритет
+- 🟡 `GET /support/types`
+- ❌ `GET /support/cases/{id}`
+- 🟡 `POST /support`
 - ⛔ `POST /support/cases`
 - ⛔ `POST /support/cases/{id}/message/`
 - ⛔ `POST /support/cases/{id}/media`
 
 ## System
 
-- ✅ `GET /locale` — 200-схема добавлена
-- ✅ `GET /notifications` — 200-схема добавлена
-- ✅ `GET /page` — 200-схема добавлена
+- ✅ `GET /locale`
+- ✅ `GET /notifications`
+- ✅ `GET /page`
