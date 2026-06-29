@@ -15,6 +15,8 @@ tags:
   description: Бандлинки, исключённые из текущего покрытия
 - name: Packages
   description: Пакеты, исключённые из текущего покрытия
+- name: Finance
+  description: Финансовые операции, исключённые из текущего покрытия
 paths:
   /auth/sign_up:
     post:
@@ -329,6 +331,30 @@ paths:
       responses:
         '200':
           description: Пакет удалён.
+  /finance/transactions/create:
+    post:
+      tags:
+      - Finance
+      summary: Создать вывод средств
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                currency:
+                  type: string
+                amount:
+                  type: number
+                createRequziteInput:
+                  type: object
+              required:
+              - currency
+              - amount
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
 components:
   securitySchemes:
     tokenAuth:

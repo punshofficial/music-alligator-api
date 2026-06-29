@@ -826,31 +826,14 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                limit:
-                  type: integer
-                skip:
-                  type: integer
-                platformIds:
-                  type: array
-                  items:
-                    type: integer
-                countryIds:
-                  type: array
-                  items:
-                    type: integer
-                artistIds:
-                  type: array
-                  items:
-                    type: integer
-                periodIds:
-                  type: array
-                  items:
-                    type: integer
+              $ref: '#/components/schemas/FinanceReportsRequest'
       responses:
-        '200':
-          description: Форма ответа не подтверждена.
+        '201':
+          description: Финансовые отчёты.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinanceReportsResponse'
   /finance/reports/detailed:
     post:
       tags:
@@ -861,17 +844,14 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                limit:
-                  type: integer
-                skip:
-                  type: integer
-                releaseId:
-                  type: integer
+              $ref: '#/components/schemas/FinanceDetailedReportsRequest'
       responses:
-        '200':
-          description: Форма ответа не подтверждена.
+        '201':
+          description: Детальный отчёт.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinanceDetailedReportsResponse'
   /finance/reports/file/{type}:
     get:
       tags:
@@ -883,9 +863,64 @@ paths:
         required: true
         schema:
           type: string
+          enum:
+          - csv
+          - pdf
+          - xlsx
+      - name: periodIds[]
+        in: query
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+        style: form
+        explode: true
+      - name: releaseId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: artistIds[]
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+        style: form
+        explode: true
+      - name: platformIds[]
+        in: query
+        required: false
+        schema:
+          type: array
+          items:
+            type: integer
+        style: form
+        explode: true
       responses:
         '200':
-          description: Форма ответа не подтверждена.
+          description: Файл отчёта.
+          content:
+            text/csv:
+              schema:
+                type: string
+                format: binary
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Ошибка запроса.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /finance/reports/filters:
     get:
       tags:
@@ -898,6 +933,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FinanceReportsFiltersResponse'
+    post:
+      tags:
+      - Finance
+      summary: Фильтры отчётов с локализованными справочниками
+      parameters:
+      - $ref: '#/components/parameters/XLang'
+      responses:
+        '201':
+          description: Фильтры отчётов.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinanceReportsFilterOptionsResponse'
   /finance/transactions:
     post:
       tags:
@@ -908,43 +956,14 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                limit:
-                  type: integer
-                skip:
-                  type: integer
-                type:
-                  type: string
-                offset:
-                  type: integer
+              $ref: '#/components/schemas/FinanceTransactionsRequest'
       responses:
-        '200':
-          description: Форма ответа не подтверждена.
-  /finance/transactions/create:
-    post:
-      tags:
-      - Finance
-      summary: Создать вывод средств
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                currency:
-                  type: string
-                amount:
-                  type: number
-                createRequziteInput:
-                  type: object
-              required:
-              - currency
-              - amount
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
+        '201':
+          description: Список транзакций.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinanceTransactionsResponse'
   /finance/transactions/invoice/{currency}/history:
     get:
       tags:
@@ -956,9 +975,16 @@ paths:
         required: true
         schema:
           type: string
+          enum:
+          - RUB
+          - EUR
       responses:
         '200':
-          description: Форма ответа не подтверждена.
+          description: История инвойсов.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinanceInvoiceHistoryResponse'
   /finance/balance:
     get:
       tags:
@@ -1501,6 +1527,13 @@ components:
           type: integer
         name:
           type: string
+    FinanceIdName:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
     FinanceReportsFiltersResponse:
       type: object
       properties:
@@ -1525,6 +1558,279 @@ components:
         statusCode:
           type: integer
           example: 200
+    FinanceReportsFilterOptionsResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            platforms:
+              type: array
+              items:
+                $ref: '#/components/schemas/FinanceIdName'
+            artists:
+              type: array
+              items:
+                $ref: '#/components/schemas/FinanceIdName'
+            countries:
+              type: array
+              items:
+                $ref: '#/components/schemas/FinanceIdName'
+            periods:
+              type: array
+              items:
+                $ref: '#/components/schemas/FinanceIdName'
+        statusCode:
+          type: integer
+          example: 201
+    FinanceReportsRequest:
+      type: object
+      properties:
+        limit:
+          type: integer
+          example: 20
+        skip:
+          type: integer
+          example: 0
+        platformIds:
+          type: array
+          items:
+            type: integer
+        countryIds:
+          type: array
+          items:
+            type: integer
+        artistIds:
+          type: array
+          items:
+            type: integer
+        periodIds:
+          type: array
+          items:
+            type: integer
+      example:
+        limit: 20
+        skip: 0
+        platformIds: []
+        countryIds: []
+        artistIds: []
+        periodIds:
+        - 25
+    FinanceReportsResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            count:
+              type: integer
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/FinanceReportItem'
+        statusCode:
+          type: integer
+          example: 201
+    FinanceReportItem:
+      type: object
+      properties:
+        royaltyInClientCurrencyEur:
+          type: number
+        royaltyInClientCurrencyRub:
+          type: number
+        label:
+          type: string
+        releaseId:
+          type: integer
+        title:
+          type: string
+        artist:
+          type: string
+          nullable: true
+        artistId:
+          type: integer
+          nullable: true
+        cover:
+          type: string
+          nullable: true
+        period:
+          type: string
+        periodId:
+          type: integer
+        listens:
+          type: integer
+        sales:
+          type: integer
+        royaltyRUB:
+          type: number
+        royaltyEUR:
+          type: number
+    FinanceDetailedReportsRequest:
+      allOf:
+      - $ref: '#/components/schemas/FinanceReportsRequest'
+      - type: object
+        properties:
+          releaseId:
+            type: integer
+    FinanceDetailedReportsResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            count:
+              type: integer
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/FinanceDetailedReportItem'
+        statusCode:
+          type: integer
+          example: 201
+    FinanceDetailedReportItem:
+      type: object
+      properties:
+        royaltyInClientCurrency:
+          type: string
+        clientCurrency:
+          type: string
+        releaseId:
+          type: integer
+        countryId:
+          type: integer
+        platformId:
+          type: integer
+        periodId:
+          type: integer
+        ISRC:
+          type: string
+        EAN:
+          type: string
+        currency:
+          type: string
+        artist:
+          type: string
+        title:
+          type: string
+        trackVersion:
+          type: string
+          nullable: true
+        royalty:
+          type: string
+        sales:
+          type: integer
+        listens:
+          type: integer
+        album:
+          type: string
+        store:
+          type: string
+        period:
+          type: string
+        label:
+          type: string
+        country:
+          type: string
+        releaseType:
+          type: string
+        cover:
+          type: string
+          nullable: true
+        saleType:
+          type: string
+        royaltyRate:
+          type: number
+        usage_date:
+          type: string
+          nullable: true
+        platform:
+          type: string
+          nullable: true
+        usage_type:
+          type: string
+          nullable: true
+        subscription_type:
+          type: string
+          nullable: true
+    FinanceTransactionsRequest:
+      type: object
+      properties:
+        limit:
+          type: integer
+          example: 10
+        skip:
+          type: integer
+          example: 0
+        offset:
+          type: integer
+          example: 0
+        type:
+          type: string
+          enum:
+          - WITHDRAW
+          - PACKAGE_PURCHASE
+    FinanceTransactionsResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/FinanceTransaction'
+            count:
+              type: integer
+        statusCode:
+          type: integer
+          example: 201
+    FinanceTransaction:
+      type: object
+      properties:
+        transactionId:
+          type: integer
+          nullable: true
+        date:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        status:
+          type: string
+        amount:
+          type: number
+        currency:
+          type: string
+        Comment:
+          type: string
+          nullable: true
+    FinanceInvoiceHistoryResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FinanceInvoiceHistoryItem'
+        statusCode:
+          type: integer
+          example: 200
+    FinanceInvoiceHistoryItem:
+      type: object
+      properties:
+        amount:
+          type: string
+        date:
+          type: string
+          format: date-time
+        royaltyEUR:
+          type: number
+        royaltyRUB:
+          type: number
+        clientCurrency:
+          type: string
+        rubsInEuro:
+          type: number
     FinanceBalanceResponse:
       type: object
       properties:

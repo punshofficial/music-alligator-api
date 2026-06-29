@@ -71,14 +71,14 @@
 
 ## Finance
 
-- 🟡 `GET /finance/reports/filters` — 200-схема добавлена, низкий приоритет
-- 🟡 `GET /finance/balance` — 200-схема добавлена, низкий приоритет
-- ❌ `GET /finance/reports/file/{type}` — низкий приоритет
-- ❌ `GET /finance/transactions/invoice/{currency}/history` — низкий приоритет
-- 🟡 `POST /finance/reports` — низкий приоритет
-- 🟡 `POST /finance/reports/detailed` — низкий приоритет
-- 🟡 `POST /finance/transactions` — низкий приоритет
-- ⛔ `POST /finance/transactions/create`
+- ✅ `GET /finance/reports/filters` — подтверждено: artists, periods, platforms, `contries`
+- ✅ `POST /finance/reports/filters` — подтверждено с `X-Lang: RU`: platforms, artists, countries, periods
+- ✅ `GET /finance/balance` — подтверждено: объект валют `RUB`/`EUR`
+- ✅ `GET /finance/reports/file/{type}` — подтверждено на `csv`, query-массивы передаются как `periodIds[]=25`
+- ✅ `GET /finance/transactions/invoice/{currency}/history` — подтверждено для `RUB`, 200
+- ✅ `POST /finance/reports` — подтверждено: `201`, wrapper `{ count, data }`
+- ✅ `POST /finance/reports/detailed` — подтверждено: `201`, wrapper `{ count, data }`
+- ✅ `POST /finance/transactions` — подтверждено: `201`, wrapper `{ count, data }`
 
 ## Client
 

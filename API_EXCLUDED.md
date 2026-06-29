@@ -27,3 +27,7 @@
 - `POST /packages/{id}` — заказ пакета.
 - `POST /packages/my/{id}/pay` — оплата пакета.
 - `DELETE /packages/my/{id}` — удаление моего пакета.
+
+## Finance
+
+- `POST /finance/transactions/create` — создание вывода средств; исключено из текущего покрытия и не тестируется.
