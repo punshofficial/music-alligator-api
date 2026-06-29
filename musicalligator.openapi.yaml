@@ -1,0 +1,2185 @@
+openapi: 3.0.3
+info:
+  title: MusicAlligator API
+  version: 0.1.0
+  description: Спецификация MusicAlligator API. Реконструирована по наблюдаемым запросам и ответам; неподтверждённые
+    места помечены в описаниях.
+servers:
+- url: https://v2api.musicalligator.ru/api
+  description: Production
+security:
+- tokenAuth: []
+tags:
+- name: Auth
+  description: Аутентификация
+- name: Releases
+  description: Релизы и треки
+- name: Media
+  description: Универсальная загрузка медиа
+- name: Platforms
+  description: Площадки и страны
+- name: Artists
+  description: Артисты
+- name: Persons
+  description: Участники (авторы, продюсеры и т.п.)
+- name: Labels
+  description: Лейблы
+- name: Bandlinks
+  description: Бандлинки (мульти-ссылки)
+- name: Statistics
+  description: Статистика прослушиваний
+- name: Finance
+  description: Финансы и выплаты
+- name: Client
+  description: Клиент, профиль и документы
+- name: Packages
+  description: Продвижение и пакеты
+- name: Support
+  description: Поддержка
+- name: System
+  description: Системные эндпоинты
+paths:
+  /auth/sign_in:
+    post:
+      tags:
+      - Auth
+      summary: Вход
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - email
+              - password
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /auth/sign_up:
+    post:
+      tags:
+      - Auth
+      summary: Регистрация
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - email
+              - password
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /auth/send_confirm_code:
+    post:
+      tags:
+      - Auth
+      summary: Отправить код подтверждения
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+              required:
+              - email
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /auth/confirm_code:
+    post:
+      tags:
+      - Auth
+      summary: Подтвердить код
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                code:
+                  type: string
+              required:
+              - email
+              - code
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /auth/change_password:
+    post:
+      tags:
+      - Auth
+      summary: Сменить пароль
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                oldPassword:
+                  type: string
+                newPassword:
+                  type: string
+              required:
+              - oldPassword
+              - newPassword
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /auth/update_password:
+    post:
+      tags:
+      - Auth
+      summary: Обновить пароль по токену
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                password:
+                  type: string
+              required:
+              - token
+              - password
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /auth/authenticate:
+    get:
+      tags:
+      - Auth
+      summary: Проверить токен
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /releases:
+    post:
+      tags:
+      - Releases
+      summary: Список релизов
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                search:
+                  type: string
+                status:
+                  type: string
+                  enum:
+                  - DRAFT
+                  - ALL
+                  - ERROR
+                  - MODERATE
+                  - WAITING
+                  - SHIPPING
+                  - RELEASED
+                  - TASK
+                  - WORKING
+                  - UPLOADED
+                  - REMOVED
+                  - DELETED
+                  - EDIT
+                  - PARTIAL_UPLOAD
+                limit:
+                  type: integer
+                skip:
+                  type: integer
+                startDate:
+                  type: string
+                  format: date
+                endDate:
+                  type: string
+                  format: date
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /releases/create:
+    post:
+      tags:
+      - Releases
+      summary: Создать релиз
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateReleaseRequest'
+      responses:
+        '201':
+          description: Релиз создан.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateReleaseResponse'
+  /releases/filters:
+    get:
+      tags:
+      - Releases
+      summary: Справочник фильтров релизов (жанры, типы, языки)
+      responses:
+        '200':
+          description: Справочник.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleasesFiltersResponse'
+  /releases/update/track:
+    get:
+      tags:
+      - Releases
+      summary: Обновление трека (служебный)
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /releases/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+      description: ID релиза (возвращается в POST /releases/create).
+    get:
+      tags:
+      - Releases
+      summary: Получить релиз по ID
+      description: Возвращает релиз целиком, вместе с массивом треков.
+      responses:
+        '200':
+          description: Объект релиза.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseResponse'
+        '404':
+          description: Релиз не найден.
+    put:
+      tags:
+      - Releases
+      summary: Обновить релиз (вместе со всеми треками)
+      description: Полное обновление релиза. Тело содержит весь релиз целиком, включая массив tracks[]
+        с полными объектами треков.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReleaseUpdate'
+      responses:
+        '200':
+          description: Релиз обновлён.
+        '400':
+          description: Ошибка валидации.
+    delete:
+      tags:
+      - Releases
+      summary: Удалить релиз
+      responses:
+        '200':
+          description: Релиз удалён.
+  /releases/{id}/status/moderate:
+    put:
+      tags:
+      - Releases
+      summary: Отправить релиз на модерацию
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID релиза.
+      responses:
+        '200':
+          description: Релиз отправлен на модерацию.
+  /releases/{id}/cover:
+    post:
+      tags:
+      - Releases
+      summary: Загрузить обложку релиза
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID релиза.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: Файл обложки.
+      responses:
+        '200':
+          description: Обложка загружена.
+  /releases/{id}/tracks/order:
+    post:
+      tags:
+      - Releases
+      summary: Изменить порядок треков
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID релиза.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order:
+                  type: array
+                  items:
+                    type: integer
+              required:
+              - order
+              description: Массив trackId в нужном порядке.
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /releases/{id}/tracks/{trackId}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+      description: ID релиза.
+    - name: trackId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+      description: ID трека.
+    put:
+      tags:
+      - Releases
+      summary: Создать/обновить трек
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Track'
+      responses:
+        '200':
+          description: Трек сохранён.
+    delete:
+      tags:
+      - Releases
+      summary: Удалить трек
+      responses:
+        '200':
+          description: Трек удалён.
+  /releases/{id}/tracks/{trackId}/upload:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+      description: ID релиза.
+    - name: trackId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+      description: ID трека.
+    post:
+      tags:
+      - Releases
+      summary: Загрузить аудиофайл трека
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                audio:
+                  type: string
+                  format: binary
+                  description: Аудио/видео файл трека.
+      responses:
+        '200':
+          description: Файл загружен.
+    delete:
+      tags:
+      - Releases
+      summary: Удалить аудиофайл трека
+      responses:
+        '200':
+          description: Файл удалён.
+  /media/upload:
+    post:
+      tags:
+      - Media
+      summary: Универсальная загрузка медиа
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Медиафайл.
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /platform/platforms/streaming:
+    get:
+      tags:
+      - Platforms
+      summary: Список стриминговых площадок
+      parameters:
+      - name: withProviders
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Площадки.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StreamingPlatformsResponse'
+  /platform/platforms/social:
+    get:
+      tags:
+      - Platforms
+      summary: Список соцсетей
+      responses:
+        '200':
+          description: Соцсети.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SocialPlatformsResponse'
+  /platform/countries:
+    get:
+      tags:
+      - Platforms
+      summary: Список стран
+      responses:
+        '200':
+          description: Страны.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountriesResponse'
+  /artists:
+    get:
+      tags:
+      - Artists
+      summary: Поиск артистов
+      parameters:
+      - name: name
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: skip
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: ids
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Список ID через запятую.
+      responses:
+        '200':
+          description: Артисты.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NamedRef'
+                  statusCode:
+                    type: integer
+                    example: 200
+    post:
+      tags:
+      - Artists
+      summary: Создать артиста
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                platforms:
+                  type: array
+                  items:
+                    type: object
+              required:
+              - name
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /artists/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+      description: ID артиста.
+    put:
+      tags:
+      - Artists
+      summary: Обновить артиста
+      requestBody:
+        description: Тело запроса не подтверждено.
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+    delete:
+      tags:
+      - Artists
+      summary: Удалить артиста
+      responses:
+        '200':
+          description: Артист удалён.
+  /persons:
+    get:
+      tags:
+      - Persons
+      summary: Поиск участников
+      parameters:
+      - name: name
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: skip
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: ids
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Список ID через запятую.
+      responses:
+        '200':
+          description: Участники.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/NamedRef'
+                  statusCode:
+                    type: integer
+                    example: 200
+    post:
+      tags:
+      - Persons
+      summary: Создать участника
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonCreate'
+      responses:
+        '201':
+          description: Участник создан.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdResponse'
+  /persons/person-data:
+    get:
+      tags:
+      - Persons
+      summary: Справочник ролей и инструментов
+      description: Источник правды по ролям (roleKeys) и инструментам (instrumentKeys) для треков.
+      responses:
+        '200':
+          description: Справочник.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonDataResponse'
+  /persons/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+      description: ID участника.
+    put:
+      tags:
+      - Persons
+      summary: Обновить участника
+      requestBody:
+        description: Тело запроса не подтверждено.
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+    delete:
+      tags:
+      - Persons
+      summary: Удалить участника
+      responses:
+        '200':
+          description: Участник удалён.
+  /labels:
+    get:
+      tags:
+      - Labels
+      summary: Поиск лейблов
+      parameters:
+      - name: name
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: skip
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: ids
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Список ID через запятую.
+      responses:
+        '200':
+          description: Лейблы (ответ с двойной вложенностью data.data).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/NamedRef'
+                  statusCode:
+                    type: integer
+    post:
+      tags:
+      - Labels
+      summary: Создать лейбл
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /labels/{id}:
+    put:
+      tags:
+      - Labels
+      summary: Обновить лейбл
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID лейбла.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /multi_links:
+    post:
+      tags:
+      - Bandlinks
+      summary: Список или создание бандлинка
+      description: Список (search/limit/skip) либо создание (name/...). Конкретное тело зависит от сценария
+        и не полностью подтверждено.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                search:
+                  type: string
+                limit:
+                  type: integer
+                skip:
+                  type: integer
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /multi_links/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+      description: ID бандлинка.
+    put:
+      tags:
+      - Bandlinks
+      summary: Обновить бандлинк
+      requestBody:
+        description: Тело запроса не подтверждено.
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+    delete:
+      tags:
+      - Bandlinks
+      summary: Удалить бандлинк
+      responses:
+        '200':
+          description: Бандлинк удалён.
+  /multi_links/name_exists:
+    post:
+      tags:
+      - Bandlinks
+      summary: Проверить занятость имени
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /releases/{releaseId}/multi_links/{linkId}:
+    delete:
+      tags:
+      - Bandlinks
+      summary: Открепить бандлинк от релиза
+      parameters:
+      - name: releaseId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID релиза.
+      - name: linkId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID бандлинка.
+      responses:
+        '200':
+          description: Бандлинк откреплён.
+  /statistics:
+    post:
+      tags:
+      - Statistics
+      summary: Запрос статистики
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StatisticsRequest'
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /statistics/filters:
+    get:
+      tags:
+      - Statistics
+      summary: Доступные фильтры статистики
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /finance/reports:
+    post:
+      tags:
+      - Finance
+      summary: Финансовые отчёты
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                limit:
+                  type: integer
+                skip:
+                  type: integer
+                platformIds:
+                  type: array
+                  items:
+                    type: integer
+                countryIds:
+                  type: array
+                  items:
+                    type: integer
+                artistIds:
+                  type: array
+                  items:
+                    type: integer
+                periodIds:
+                  type: array
+                  items:
+                    type: integer
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /finance/reports/detailed:
+    post:
+      tags:
+      - Finance
+      summary: Детальный отчёт
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                limit:
+                  type: integer
+                skip:
+                  type: integer
+                releaseId:
+                  type: integer
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /finance/reports/file/{type}:
+    get:
+      tags:
+      - Finance
+      summary: Файл отчёта
+      parameters:
+      - name: type
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /finance/reports/filters:
+    get:
+      tags:
+      - Finance
+      summary: Фильтры отчётов
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /finance/transactions:
+    post:
+      tags:
+      - Finance
+      summary: Список транзакций
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                limit:
+                  type: integer
+                skip:
+                  type: integer
+                type:
+                  type: string
+                offset:
+                  type: integer
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /finance/transactions/create:
+    post:
+      tags:
+      - Finance
+      summary: Создать вывод средств
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                currency:
+                  type: string
+                amount:
+                  type: number
+                createRequziteInput:
+                  type: object
+              required:
+              - currency
+              - amount
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /finance/transactions/invoice/{currency}/history:
+    get:
+      tags:
+      - Finance
+      summary: История инвойсов
+      parameters:
+      - name: currency
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /finance/balance:
+    get:
+      tags:
+      - Finance
+      summary: Баланс
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /client:
+    get:
+      tags:
+      - Client
+      summary: Данные клиента
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /client/avatar:
+    post:
+      tags:
+      - Client
+      summary: Загрузить аватар
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+                  description: Файл аватара.
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+    delete:
+      tags:
+      - Client
+      summary: Удалить аватар
+      responses:
+        '200':
+          description: Аватар удалён.
+  /client/contract_data:
+    get:
+      tags:
+      - Client
+      summary: Данные для договора
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /client/bank_data:
+    post:
+      tags:
+      - Client
+      summary: Сохранить банковские реквизиты
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                account:
+                  type: string
+                bankName:
+                  type: string
+                bankNumber:
+                  type: string
+                correspondentAccount:
+                  type: string
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /client/document:
+    post:
+      tags:
+      - Client
+      summary: Загрузить документ
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                document:
+                  type: string
+                  format: binary
+                  description: PDF-документ.
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /documents/contracts:
+    get:
+      tags:
+      - Client
+      summary: Список договоров
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+    post:
+      tags:
+      - Client
+      summary: Создать договор
+      requestBody:
+        description: Тело запроса не подтверждено.
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /packages/types:
+    get:
+      tags:
+      - Packages
+      summary: Типы пакетов
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /packages:
+    get:
+      tags:
+      - Packages
+      summary: Список пакетов
+      parameters:
+      - name: packageListId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: lang
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /packages/my:
+    get:
+      tags:
+      - Packages
+      summary: Мои пакеты
+      parameters:
+      - name: packageListId
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /packages/moderation:
+    get:
+      tags:
+      - Packages
+      summary: Пакеты на модерации
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /packages/{id}:
+    post:
+      tags:
+      - Packages
+      summary: Заказать пакет
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID пакета.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+                releaseId:
+                  type: integer
+                telegram:
+                  type: string
+                budget:
+                  type: number
+                releaseLink:
+                  type: string
+                currency:
+                  type: string
+                finReqId:
+                  type: integer
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /packages/my/{id}/pay:
+    post:
+      tags:
+      - Packages
+      summary: Оплатить пакет
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID пакета.
+      requestBody:
+        description: Тело запроса не подтверждено.
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /packages/my/{id}:
+    delete:
+      tags:
+      - Packages
+      summary: Удалить мой пакет
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID пакета.
+      responses:
+        '200':
+          description: Пакет удалён.
+  /support:
+    post:
+      tags:
+      - Support
+      summary: Список обращений
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                limit:
+                  type: integer
+                skip:
+                  type: integer
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /support/cases:
+    post:
+      tags:
+      - Support
+      summary: Создать обращение
+      requestBody:
+        description: Тело запроса не подтверждено.
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /support/cases/{id}:
+    get:
+      tags:
+      - Support
+      summary: Получить обращение
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID обращения.
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /support/cases/{id}/message/:
+    post:
+      tags:
+      - Support
+      summary: Добавить сообщение в обращение
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID обращения.
+      requestBody:
+        description: Тело запроса не подтверждено.
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /support/cases/{id}/media:
+    post:
+      tags:
+      - Support
+      summary: Прикрепить медиа к обращению
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID обращения.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Вложение.
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /support/types:
+    get:
+      tags:
+      - Support
+      summary: Типы обращений
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /locale:
+    get:
+      tags:
+      - System
+      summary: Локали
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /notifications:
+    get:
+      tags:
+      - System
+      summary: Уведомления
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /page:
+    get:
+      tags:
+      - System
+      summary: Страница (контент)
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+components:
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: authorization
+      description: Токен сессии (UUID), передаётся в заголовке authorization.
+  schemas:
+    Genre:
+      type: object
+      properties:
+        genreId:
+          type: integer
+          example: 92
+      required:
+      - genreId
+    NamedRef:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+      description: Краткая ссылка на сущность (подтверждены id и name).
+    ArtistRef:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 88029
+        role:
+          type: string
+          enum:
+          - MAIN
+          - FEAT
+          example: MAIN
+      required:
+      - id
+      - role
+    PlatformBinding:
+      type: object
+      properties:
+        streamingPlatformId:
+          type: integer
+          description: ID площадки из /platform/platforms/streaming.
+          example: 291
+        platformId:
+          type: string
+          description: Внешний ID профиля на площадке (может быть пустым).
+          example: spotify:artist:5Ii3BSYi2AVLX8mDiyd4CQ
+      description: Привязка площадки внутри трека (персоны/артиста).
+    TrackPerson:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID персоны (/persons).
+          example: 81424
+        roleKeys:
+          type: array
+          items:
+            type: string
+          description: Ключи ролей из /persons/person-data.
+          example:
+          - COMPOSER
+          - LYRICIST
+          - PRODUCER
+        instrumentKeys:
+          type: array
+          items:
+            type: string
+          description: Ключи инструментов из /persons/person-data.
+        platforms:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlatformBinding'
+      required:
+      - id
+      - roleKeys
+      description: Участник трека. Источник правды по ролям и инструментам.
+    Contributor:
+      type: object
+      properties:
+        personId:
+          type: integer
+          example: 81424
+        roleIds:
+          type: array
+          items:
+            type: integer
+          description: Числовые ID ролей. Может приходить пустым — роли берутся из persons[].
+        instrumentIds:
+          type: array
+          items:
+            type: integer
+      required:
+      - personId
+      description: Legacy-модель того же участника; отправляется для совместимости.
+    ClientRef:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 58474
+      required:
+      - id
+      description: Клиент (владелец релиза). В ответе приходит также профиль; здесь оставлен только id.
+    Media:
+      type: object
+      properties:
+        id:
+          type: integer
+        filename:
+          type: string
+        url:
+          type: string
+          format: uri
+        type:
+          type: string
+          enum:
+          - cover
+          - cover_750
+          - wav
+          - mp3
+      description: Медиафайл релиза/трека.
+    Checklist:
+      type: object
+      properties:
+        status:
+          type: string
+          example: NEW
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+              newValue: {}
+              oldValue: {}
+              isAccepted:
+                type: boolean
+              dtUpdated:
+                type: string
+                nullable: true
+      description: Лог изменений полей (используется при модерации).
+    Track:
+      type: object
+      properties:
+        trackId:
+          type: integer
+          format: int64
+          example: 908312
+        title:
+          type: string
+          example: Pentagramma
+        trackVersion:
+          type: string
+          nullable: true
+          description: Версия (например, "Slowed"); null для основной.
+        genre:
+          $ref: '#/components/schemas/Genre'
+        additionalGenres:
+          type: array
+          items:
+            oneOf:
+            - type: integer
+            - $ref: '#/components/schemas/Genre'
+          description: Внутри release-payload приходит как [id], в отдельном PUT трека — как [{ genreId
+            }].
+        language:
+          type: integer
+          description: ID языка (например, 7 = русский).
+          example: 7
+        ownIsrc:
+          type: string
+          nullable: true
+        related:
+          type: integer
+          description: Доля связанных прав (0–100).
+          example: 100
+        copyrights:
+          type: integer
+          description: Доля авторских прав (0–100).
+          example: 100
+        adult:
+          type: boolean
+          example: false
+        instrumental:
+          type: boolean
+          description: Если true — LYRICIST не обязателен.
+          example: false
+        karaoke:
+          type: string
+          nullable: true
+        recordingYear:
+          type: integer
+          example: 2026
+        startPoint:
+          type: integer
+          description: Точка старта превью (сек).
+          example: 0
+        clipPreviewFrame:
+          type: integer
+          nullable: true
+          description: Только для CLIP.
+        artists:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArtistRef'
+        persons:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackPerson'
+        contributors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contributor'
+      required:
+      - trackId
+      - title
+      - genre
+      - language
+      - recordingYear
+      - persons
+      description: Объект трека (тело PUT /releases/{id}/tracks/{trackId} и элемент tracks[]).
+    ReleaseUpdate:
+      type: object
+      properties:
+        releaseId:
+          type: integer
+          format: int64
+          example: 362233
+        title:
+          type: string
+          example: Pentagramma
+        releaseType:
+          type: string
+          enum:
+          - SINGLE
+          - ALBUM
+          - EP
+          - PODCAST
+          - CLIP
+          - RINGTONE
+          - TIKTOK_SOUND
+          example: ALBUM
+        status:
+          type: string
+          enum:
+          - DRAFT
+          - ALL
+          - ERROR
+          - MODERATE
+          - WAITING
+          - SHIPPING
+          - RELEASED
+          - TASK
+          - WORKING
+          - UPLOADED
+          - REMOVED
+          - DELETED
+          - EDIT
+          - PARTIAL_UPLOAD
+          description: При создании/обновлении используется DRAFT; прочие значения выставляются системой.
+          example: DRAFT
+        releaseDate:
+          type: string
+          format: date
+          description: Дата релиза (на запись — date).
+          example: '2026-08-07'
+        originalReleaseDate:
+          type: string
+          format: date
+          nullable: true
+        presaveDate:
+          type: string
+          format: date
+          nullable: true
+        createDate:
+          type: string
+          format: date-time
+          nullable: true
+        language:
+          type: integer
+          nullable: true
+          description: ID языка релиза (часто null; язык задаётся на треке).
+        genre:
+          $ref: '#/components/schemas/Genre'
+        additionalGenres:
+          type: array
+          items:
+            $ref: '#/components/schemas/Genre'
+        label:
+          type: string
+          example: AURA MUSIC
+        labelId:
+          type: integer
+          example: 41510
+        articleLabel:
+          type: string
+          example: MUA362233
+        internalId:
+          type: string
+          example: alligator-r2362233
+        releaseVersion:
+          type: string
+          nullable: true
+        ownEan:
+          type: string
+          nullable: true
+        clineValue:
+          type: string
+          description: Правообладатель (C-line).
+          example: AURAMUSIC
+        clineYear:
+          type: string
+          example: '2026'
+        plineValue:
+          type: string
+          description: Правообладатель фонограммы (P-line).
+          example: AURAMUSIC
+        plineYear:
+          type: string
+          example: '2026'
+        cover:
+          type: string
+          description: Путь к обложке в хранилище.
+        client:
+          $ref: '#/components/schemas/ClientRef'
+        artist:
+          type: integer
+          description: ID основного артиста (дублирует MAIN из artists[]).
+          example: 88029
+        artists:
+          type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/ArtistRef'
+        persons:
+          type: array
+          items: {}
+          description: На уровне релиза всегда пусто. Участники задаются на треках.
+        streamingPlatforms:
+          type: array
+          items:
+            type: integer
+          description: ID площадок из /platform/platforms/streaming.
+        countries:
+          type: array
+          items:
+            type: integer
+        level:
+          type: string
+          enum:
+          - REGULAR
+          - PREMIUM
+          example: PREMIUM
+        levelPlan:
+          type: string
+          enum:
+          - BUSINESS
+          - STANDARD
+          - PREMIUM
+          - BUSINESS-START
+          - BUSINESS-STANDARD
+          - BUSINESS-PREMIUM
+          example: BUSINESS-PREMIUM
+        isReleased:
+          type: boolean
+          example: false
+        contractSigned:
+          type: boolean
+          example: false
+        tracks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
+          description: Полные объекты треков (не ссылки).
+      required:
+      - releaseId
+      - title
+      - releaseType
+      - releaseDate
+      - genre
+      - artists
+      description: Тело PUT /releases/{id}. Frontend-внутренние поля (_*) опущены.
+    TrackResponse:
+      description: 'Объект трека в ответе: Track плюс серверные поля.'
+      allOf:
+      - $ref: '#/components/schemas/Track'
+      - type: object
+        properties:
+          media:
+            type: array
+            items:
+              $ref: '#/components/schemas/Media'
+          trackData:
+            type: object
+            properties:
+              duration:
+                type: number
+                description: Длительность, сек.
+                example: 125.75
+          processStatus:
+            type: string
+            example: completed
+          processMessage:
+            type: string
+          internalId:
+            type: string
+          md5:
+            type: string
+          track:
+            type: string
+            description: Путь к исходному (wav) файлу.
+          dtCreate:
+            type: string
+          checklist:
+            $ref: '#/components/schemas/Checklist'
+    Release:
+      description: 'Объект релиза в ответе: ReleaseUpdate плюс серверные поля. releaseDate в ответе приходит
+        как date-time.'
+      allOf:
+      - $ref: '#/components/schemas/ReleaseUpdate'
+      - type: object
+        properties:
+          releaseDate:
+            type: string
+            format: date-time
+            example: '2026-08-07T00:00:00Z'
+          media:
+            type: array
+            items:
+              $ref: '#/components/schemas/Media'
+          isFromMigration:
+            type: boolean
+            nullable: true
+          checklist:
+            $ref: '#/components/schemas/Checklist'
+          tracks:
+            type: array
+            items:
+              $ref: '#/components/schemas/TrackResponse'
+    ReleaseResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Release'
+        statusCode:
+          type: integer
+          example: 200
+    CreateReleaseRequest:
+      type: object
+      properties:
+        releaseType:
+          type: string
+          enum:
+          - SINGLE
+          - ALBUM
+          - EP
+          - PODCAST
+          - CLIP
+          - RINGTONE
+          - TIKTOK_SOUND
+          example: SINGLE
+      required:
+      - releaseType
+      description: Тело POST /releases/create.
+    CreateReleaseResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            release:
+              type: object
+              properties:
+                releaseId:
+                  type: integer
+                  example: 362233
+                tracks:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      trackId:
+                        type: integer
+        statusCode:
+          type: integer
+      description: Подтверждены releaseId и первый trackId.
+    PersonPlatform:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: ID площадки из /platform/platforms/streaming.
+          example: 291
+        name:
+          type: string
+          example: Spotify
+        platformId:
+          type: string
+          description: Внешний ID профиля (может быть пустым).
+      description: Привязка площадки при создании/редактировании персоны.
+    PersonCreate:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Тестик
+        platforms:
+          type: array
+          items:
+            $ref: '#/components/schemas/PersonPlatform'
+      required:
+      - name
+      description: Тело POST /persons.
+    IdResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            id:
+              type: integer
+              example: 133586
+        statusCode:
+          type: integer
+          example: 201
+      description: Возвращается только id созданной сущности.
+    Role:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        nameEn:
+          type: string
+        key:
+          type: string
+          description: Ключ для roleKeys в треке.
+        category:
+          type: string
+        categoryEn:
+          type: string
+    Instrument:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        nameEn:
+          type: string
+        key:
+          type: string
+          description: Ключ для instrumentKeys в треке.
+        category:
+          type: string
+        categoryEn:
+          type: string
+    PersonDataResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            roles:
+              type: array
+              items:
+                $ref: '#/components/schemas/Role'
+            instruments:
+              type: array
+              items:
+                $ref: '#/components/schemas/Instrument'
+        statusCode:
+          type: integer
+      description: Справочник ролей и инструментов.
+    StreamingPlatform:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 291
+        name:
+          type: string
+        publicName:
+          type: string
+        urlIcon:
+          type: string
+        releaseTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReleaseTypeRef'
+        domains:
+          type: array
+          items:
+            type: string
+    ReleaseTypeRef:
+      type: object
+      properties:
+        releaseTypeId:
+          type: integer
+        releaseType:
+          type: string
+          enum:
+          - SINGLE
+          - ALBUM
+          - EP
+          - PODCAST
+          - CLIP
+          - RINGTONE
+          - TIKTOK_SOUND
+    StreamingPlatformsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/StreamingPlatform'
+        statusCode:
+          type: integer
+          example: 200
+    SocialPlatform:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 5
+        name:
+          type: string
+        icon_url:
+          type: string
+        domains:
+          type: array
+          items:
+            type: string
+    SocialPlatformsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SocialPlatform'
+        statusCode:
+          type: integer
+          example: 200
+    Country:
+      type: object
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+          description: ISO alpha-2.
+          example: AB
+        name:
+          type: string
+        alpha3:
+          type: string
+        nameEn:
+          type: string
+        isAvailableForDistribution:
+          type: boolean
+        countryGroup:
+          type: string
+        countryGroupEn:
+          type: string
+    CountriesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Country'
+        statusCode:
+          type: integer
+          example: 200
+    FilterGenre:
+      type: object
+      properties:
+        genreId:
+          type: integer
+        parentId:
+          type: integer
+          nullable: true
+        genreName:
+          type: string
+        category:
+          type: string
+    Lang:
+      type: object
+      properties:
+        langId:
+          type: integer
+          example: 7
+        langCode:
+          type: string
+        langName:
+          type: string
+    ReleasesFiltersResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            genres:
+              type: array
+              items:
+                $ref: '#/components/schemas/FilterGenre'
+            types:
+              type: array
+              items:
+                $ref: '#/components/schemas/ReleaseTypeRef'
+            langs:
+              type: array
+              items:
+                $ref: '#/components/schemas/Lang'
+        statusCode:
+          type: integer
+      description: Справочник для фильтров и форм релиза.
+    StatisticsRequest:
+      type: object
+      properties:
+        dates:
+          type: array
+          items:
+            type: object
+            properties:
+              from:
+                type: string
+                format: date
+              to:
+                type: string
+                format: date
+          description: Периоды.
+        filters:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: id_m_release, id_m_track, id_m_list_streaming_platform, id_s_list_country,
+                  ownEan.
+              value: {}
+        aggs:
+          type: array
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                description: dt_listen, id_m_list_streaming_platform, id_m_release, id_m_track, id_s_list_country.
+              format:
+                type: string
+                example: day
+      description: Тело POST /statistics.

@@ -1,0 +1,146 @@
+{
+    "data": [
+        {
+            "id": 12,
+            "name": "Website",
+            "icon_url": "website",
+            "domains": [
+                "website.com"
+            ]
+        },
+        {
+            "id": 10,
+            "name": "Twitter",
+            "icon_url": "twitter.com.png",
+            "domains": [
+                "twitter.com"
+            ]
+        },
+        {
+            "id": 9,
+            "name": "Telegram",
+            "icon_url": "telegram.org.png",
+            "domains": [
+                "t.me"
+            ]
+        },
+        {
+            "id": 8,
+            "name": "Yappy",
+            "icon_url": "yappy.media.png",
+            "domains": [
+                "yappy.com"
+            ]
+        },
+        {
+            "id": 7,
+            "name": "Facebook",
+            "icon_url": "facebook.com.png",
+            "domains": [
+                "facebook.com"
+            ]
+        },
+        {
+            "id": 13,
+            "name": "Yandex.Dzen",
+            "icon_url": "yandex.png",
+            "domains": [
+                "zen.yandex.ru"
+            ]
+        },
+        {
+            "id": 14,
+            "name": "Patreon",
+            "icon_url": "patreon.png",
+            "domains": [
+                "patreon.com"
+            ]
+        },
+        {
+            "id": 15,
+            "name": "Bandcamp",
+            "icon_url": "bandcamp.png",
+            "domains": [
+                "bandcamp.com"
+            ]
+        },
+        {
+            "id": 16,
+            "name": "Shazam",
+            "icon_url": "shazam.png",
+            "domains": [
+                "shazam.com"
+            ]
+        },
+        {
+            "id": 17,
+            "name": "Rutube",
+            "icon_url": "rutube.png",
+            "domains": [
+                "rutube.ru"
+            ]
+        },
+        {
+            "id": 18,
+            "name": "Vimeo",
+            "icon_url": "vimeo.png",
+            "domains": [
+                "vimeo.com"
+            ]
+        },
+        {
+            "id": 2,
+            "name": "VKontakte",
+            "icon_url": "vk.cc.png",
+            "domains": [
+                "vk.cc",
+                "vk.com",
+                "vk.ru"
+            ]
+        },
+        {
+            "id": 11,
+            "name": "Odnoklassniki",
+            "icon_url": "ok.ru.png",
+            "domains": [
+                "ok.ru"
+            ]
+        },
+        {
+            "id": 1,
+            "name": "Instagram",
+            "icon_url": "instagram.com.png",
+            "domains": [
+                "instagram.com"
+            ]
+        },
+        {
+            "id": 6,
+            "name": "TikTok",
+            "icon_url": "tiktok.com.png",
+            "domains": [
+                "tiktok.com"
+            ]
+        },
+        {
+            "id": 19,
+            "name": "X",
+            "icon_url": "x.png",
+            "domains": [
+                "x.com"
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Youtube",
+            "icon_url": "youtube.com.png",
+            "domains": [
+                "youtube.com",
+                "www.youtube.com",
+                "music.youtube.com",
+                "youtu.be"
+            ]
+        }
+    ],
+    "statusCode": 200
+}

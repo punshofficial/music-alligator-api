@@ -1,0 +1,2555 @@
+{
+    "data": [
+        {
+            "id": 1058,
+            "code": "AB",
+            "name": "Абхазия",
+            "alpha3": "ABH",
+            "nameEn": "Abkhazia",
+            "isAvailableForDistribution": false,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1059,
+            "code": "AU",
+            "name": "Австралия",
+            "alpha3": "AUS",
+            "nameEn": "Australia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1060,
+            "code": "AT",
+            "name": "Австрия",
+            "alpha3": "AUT",
+            "nameEn": "Austria",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1061,
+            "code": "AZ",
+            "name": "Азербайджан",
+            "alpha3": "AZE",
+            "nameEn": "Azerbaijan",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1062,
+            "code": "AL",
+            "name": "Албания",
+            "alpha3": "ALB",
+            "nameEn": "Albania",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1063,
+            "code": "DZ",
+            "name": "Алжир",
+            "alpha3": "DZA",
+            "nameEn": "Algeria",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1064,
+            "code": "AS",
+            "name": "Американское Самоа",
+            "alpha3": "ASM",
+            "nameEn": "American Samoa",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1065,
+            "code": "AI",
+            "name": "Ангилья",
+            "alpha3": "AIA",
+            "nameEn": "Anguilla",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1066,
+            "code": "AO",
+            "name": "Ангола",
+            "alpha3": "AGO",
+            "nameEn": "Angola",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1067,
+            "code": "AD",
+            "name": "Андорра",
+            "alpha3": "AND",
+            "nameEn": "Andorra",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1068,
+            "code": "AQ",
+            "name": "Антарктида",
+            "alpha3": "ATA",
+            "nameEn": "Antarctica",
+            "isAvailableForDistribution": false,
+            "countryGroup": null,
+            "countryGroupEn": null
+        },
+        {
+            "id": 1069,
+            "code": "AG",
+            "name": "Антигуа и Барбуда",
+            "alpha3": "ATG",
+            "nameEn": "Antigua and Barbuda",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1070,
+            "code": "AR",
+            "name": "Аргентина",
+            "alpha3": "ARG",
+            "nameEn": "Argentina",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1071,
+            "code": "AM",
+            "name": "Армения",
+            "alpha3": "ARM",
+            "nameEn": "Armenia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1072,
+            "code": "AW",
+            "name": "Аруба",
+            "alpha3": "ABW",
+            "nameEn": "Aruba",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1073,
+            "code": "AF",
+            "name": "Афганистан",
+            "alpha3": "AFG",
+            "nameEn": "Afghanistan",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1074,
+            "code": "BS",
+            "name": "Багамы",
+            "alpha3": "BHS",
+            "nameEn": "Bahamas",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1075,
+            "code": "BD",
+            "name": "Бангладеш",
+            "alpha3": "BGD",
+            "nameEn": "Bangladesh",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1076,
+            "code": "BB",
+            "name": "Барбадос",
+            "alpha3": "BRB",
+            "nameEn": "Barbados",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1077,
+            "code": "BH",
+            "name": "Бахрейн",
+            "alpha3": "BHR",
+            "nameEn": "Bahrain",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1078,
+            "code": "BY",
+            "name": "Беларусь",
+            "alpha3": "BLR",
+            "nameEn": "Belarus",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1079,
+            "code": "BZ",
+            "name": "Белиз",
+            "alpha3": "BLZ",
+            "nameEn": "Belize",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1080,
+            "code": "BE",
+            "name": "Бельгия",
+            "alpha3": "BEL",
+            "nameEn": "Belgium",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1081,
+            "code": "BJ",
+            "name": "Бенин",
+            "alpha3": "BEN",
+            "nameEn": "Benin",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1082,
+            "code": "BM",
+            "name": "Бермуды",
+            "alpha3": "BMU",
+            "nameEn": "Bermuda",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1083,
+            "code": "BG",
+            "name": "Болгария",
+            "alpha3": "BGR",
+            "nameEn": "Bulgaria",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1084,
+            "code": "BO",
+            "name": "Боливия, Многонациональное Государство",
+            "alpha3": "BOL",
+            "nameEn": "Bolivia, plurinational state of",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1085,
+            "code": "BQ",
+            "name": "Бонайре, Саба и Синт-Эстатиус",
+            "alpha3": "BES",
+            "nameEn": "Bonaire, Sint Eustatius and Saba",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1086,
+            "code": "BA",
+            "name": "Босния и Герцеговина",
+            "alpha3": "BIH",
+            "nameEn": "Bosnia and Herzegovina",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1087,
+            "code": "BW",
+            "name": "Ботсвана",
+            "alpha3": "BWA",
+            "nameEn": "Botswana",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1088,
+            "code": "BR",
+            "name": "Бразилия",
+            "alpha3": "BRA",
+            "nameEn": "Brazil",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1089,
+            "code": "IO",
+            "name": "Британская территория в Индийском океане",
+            "alpha3": "IOT",
+            "nameEn": "British Indian Ocean Territory",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1090,
+            "code": "BN",
+            "name": "Бруней-Даруссалам",
+            "alpha3": "BRN",
+            "nameEn": "Brunei Darussalam",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1091,
+            "code": "BF",
+            "name": "Буркина-Фасо",
+            "alpha3": "BFA",
+            "nameEn": "Burkina Faso",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1092,
+            "code": "BI",
+            "name": "Бурунди",
+            "alpha3": "BDI",
+            "nameEn": "Burundi",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1093,
+            "code": "BT",
+            "name": "Бутан",
+            "alpha3": "BTN",
+            "nameEn": "Bhutan",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1094,
+            "code": "VU",
+            "name": "Вануату",
+            "alpha3": "VUT",
+            "nameEn": "Vanuatu",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1095,
+            "code": "HU",
+            "name": "Венгрия",
+            "alpha3": "HUN",
+            "nameEn": "Hungary",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1096,
+            "code": "VE",
+            "name": "Венесуэла Боливарианская Республика",
+            "alpha3": "VEN",
+            "nameEn": "Venezuela",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1309,
+            "code": "WL",
+            "name": "Весь Мир",
+            "alpha3": "WRL",
+            "nameEn": "World",
+            "isAvailableForDistribution": false,
+            "countryGroup": null,
+            "countryGroupEn": null
+        },
+        {
+            "id": 1097,
+            "code": "VG",
+            "name": "Виргинские острова, Британские",
+            "alpha3": "VGB",
+            "nameEn": "Virgin Islands, British",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1098,
+            "code": "VI",
+            "name": "Виргинские острова, США",
+            "alpha3": "VIR",
+            "nameEn": "Virgin Islands, U.S.",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1099,
+            "code": "VN",
+            "name": "Вьетнам",
+            "alpha3": "VNM",
+            "nameEn": "Vietnam",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1100,
+            "code": "GA",
+            "name": "Габон",
+            "alpha3": "GAB",
+            "nameEn": "Gabon",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1101,
+            "code": "HT",
+            "name": "Гаити",
+            "alpha3": "HTI",
+            "nameEn": "Haiti",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1102,
+            "code": "GY",
+            "name": "Гайана",
+            "alpha3": "GUY",
+            "nameEn": "Guyana",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1103,
+            "code": "GM",
+            "name": "Гамбия",
+            "alpha3": "GMB",
+            "nameEn": "Gambia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1104,
+            "code": "GH",
+            "name": "Гана",
+            "alpha3": "GHA",
+            "nameEn": "Ghana",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1105,
+            "code": "GP",
+            "name": "Гваделупа",
+            "alpha3": "GLP",
+            "nameEn": "Guadeloupe",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1106,
+            "code": "GT",
+            "name": "Гватемала",
+            "alpha3": "GTM",
+            "nameEn": "Guatemala",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1107,
+            "code": "GN",
+            "name": "Гвинея",
+            "alpha3": "GIN",
+            "nameEn": "Guinea",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1108,
+            "code": "GW",
+            "name": "Гвинея-Бисау",
+            "alpha3": "GNB",
+            "nameEn": "Guinea-Bissau",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1109,
+            "code": "DE",
+            "name": "Германия",
+            "alpha3": "DEU",
+            "nameEn": "Germany",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1110,
+            "code": "GG",
+            "name": "Гернси",
+            "alpha3": "GGY",
+            "nameEn": "Guernsey",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1111,
+            "code": "GI",
+            "name": "Гибралтар",
+            "alpha3": "GIB",
+            "nameEn": "Gibraltar",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1112,
+            "code": "HN",
+            "name": "Гондурас",
+            "alpha3": "HND",
+            "nameEn": "Honduras",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1113,
+            "code": "HK",
+            "name": "Гонконг",
+            "alpha3": "HKG",
+            "nameEn": "Hong Kong",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1114,
+            "code": "GD",
+            "name": "Гренада",
+            "alpha3": "GRD",
+            "nameEn": "Grenada",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1115,
+            "code": "GL",
+            "name": "Гренландия",
+            "alpha3": "GRL",
+            "nameEn": "Greenland",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1116,
+            "code": "GR",
+            "name": "Греция",
+            "alpha3": "GRC",
+            "nameEn": "Greece",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1117,
+            "code": "GE",
+            "name": "Грузия",
+            "alpha3": "GEO",
+            "nameEn": "Georgia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1118,
+            "code": "GU",
+            "name": "Гуам",
+            "alpha3": "GUM",
+            "nameEn": "Guam",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1119,
+            "code": "DK",
+            "name": "Дания",
+            "alpha3": "DNK",
+            "nameEn": "Denmark",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1120,
+            "code": "JE",
+            "name": "Джерси",
+            "alpha3": "JEY",
+            "nameEn": "Jersey",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1121,
+            "code": "DJ",
+            "name": "Джибути",
+            "alpha3": "DJI",
+            "nameEn": "Djibouti",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1122,
+            "code": "DM",
+            "name": "Доминика",
+            "alpha3": "DMA",
+            "nameEn": "Dominica",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1123,
+            "code": "DO",
+            "name": "Доминиканская Республика",
+            "alpha3": "DOM",
+            "nameEn": "Dominican Republic",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1124,
+            "code": "EG",
+            "name": "Египет",
+            "alpha3": "EGY",
+            "nameEn": "Egypt",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1125,
+            "code": "ZM",
+            "name": "Замбия",
+            "alpha3": "ZMB",
+            "nameEn": "Zambia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1126,
+            "code": "EH",
+            "name": "Западная Сахара",
+            "alpha3": "ESH",
+            "nameEn": "Western Sahara",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1127,
+            "code": "ZW",
+            "name": "Зимбабве",
+            "alpha3": "ZWE",
+            "nameEn": "Zimbabwe",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1128,
+            "code": "IL",
+            "name": "Израиль",
+            "alpha3": "ISR",
+            "nameEn": "Israel",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1129,
+            "code": "IN",
+            "name": "Индия",
+            "alpha3": "IND",
+            "nameEn": "India",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1130,
+            "code": "ID",
+            "name": "Индонезия",
+            "alpha3": "IDN",
+            "nameEn": "Indonesia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1131,
+            "code": "JO",
+            "name": "Иордания",
+            "alpha3": "JOR",
+            "nameEn": "Jordan",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1132,
+            "code": "IQ",
+            "name": "Ирак",
+            "alpha3": "IRQ",
+            "nameEn": "Iraq",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1133,
+            "code": "IR",
+            "name": "Иран, Исламская Республика",
+            "alpha3": "IRN",
+            "nameEn": "Iran, Islamic Republic of",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1134,
+            "code": "IE",
+            "name": "Ирландия",
+            "alpha3": "IRL",
+            "nameEn": "Ireland",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1135,
+            "code": "IS",
+            "name": "Исландия",
+            "alpha3": "ISL",
+            "nameEn": "Iceland",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1136,
+            "code": "ES",
+            "name": "Испания",
+            "alpha3": "ESP",
+            "nameEn": "Spain",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1137,
+            "code": "IT",
+            "name": "Италия",
+            "alpha3": "ITA",
+            "nameEn": "Italy",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1138,
+            "code": "YE",
+            "name": "Йемен",
+            "alpha3": "YEM",
+            "nameEn": "Yemen",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1139,
+            "code": "CV",
+            "name": "Кабо-Верде",
+            "alpha3": "CPV",
+            "nameEn": "Cape Verde",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1140,
+            "code": "KZ",
+            "name": "Казахстан",
+            "alpha3": "KAZ",
+            "nameEn": "Kazakhstan",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1141,
+            "code": "KH",
+            "name": "Камбоджа",
+            "alpha3": "KHM",
+            "nameEn": "Cambodia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1142,
+            "code": "CM",
+            "name": "Камерун",
+            "alpha3": "CMR",
+            "nameEn": "Cameroon",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1143,
+            "code": "CA",
+            "name": "Канада",
+            "alpha3": "CAN",
+            "nameEn": "Canada",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1144,
+            "code": "QA",
+            "name": "Катар",
+            "alpha3": "QAT",
+            "nameEn": "Qatar",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1145,
+            "code": "KE",
+            "name": "Кения",
+            "alpha3": "KEN",
+            "nameEn": "Kenya",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1146,
+            "code": "CY",
+            "name": "Кипр",
+            "alpha3": "CYP",
+            "nameEn": "Cyprus",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1147,
+            "code": "KG",
+            "name": "Киргизия",
+            "alpha3": "KGZ",
+            "nameEn": "Kyrgyzstan",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1148,
+            "code": "KI",
+            "name": "Кирибати",
+            "alpha3": "KIR",
+            "nameEn": "Kiribati",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1149,
+            "code": "CN",
+            "name": "Китай",
+            "alpha3": "CHN",
+            "nameEn": "China",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1150,
+            "code": "CC",
+            "name": "Кокосовые (Килинг) острова",
+            "alpha3": "CCK",
+            "nameEn": "Cocos (Keeling) Islands",
+            "isAvailableForDistribution": false,
+            "countryGroup": null,
+            "countryGroupEn": null
+        },
+        {
+            "id": 1151,
+            "code": "CO",
+            "name": "Колумбия",
+            "alpha3": "COL",
+            "nameEn": "Colombia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1152,
+            "code": "KM",
+            "name": "Коморы",
+            "alpha3": "COM",
+            "nameEn": "Comoros",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1153,
+            "code": "CG",
+            "name": "Конго",
+            "alpha3": "COG",
+            "nameEn": "Congo",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1154,
+            "code": "CD",
+            "name": "Конго, Демократическая Республика",
+            "alpha3": "COD",
+            "nameEn": "Congo, Democratic Republic of the",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1299,
+            "code": "KP",
+            "name": "Корея, Народно-Демократическая Республика",
+            "alpha3": "PRK",
+            "nameEn": "Korea, Democratic People\"s republic of",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1312,
+            "code": "XK",
+            "name": "Косово",
+            "alpha3": "XKX",
+            "nameEn": "Kosovo",
+            "isAvailableForDistribution": false,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1306,
+            "code": "CR",
+            "name": "Коста-Рика",
+            "alpha3": "CRI",
+            "nameEn": "Costa Rica",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1307,
+            "code": "CI",
+            "name": "Кот Д'ивуар",
+            "alpha3": "CIV",
+            "nameEn": "Cote D'ivoire",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1308,
+            "code": "CU",
+            "name": "Куба",
+            "alpha3": "CUB",
+            "nameEn": "Cuba",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1302,
+            "code": "KW",
+            "name": "Кувейт",
+            "alpha3": "KWT",
+            "nameEn": "Kuwait",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1314,
+            "code": "CW",
+            "name": "Кюрасао",
+            "alpha3": "CUW",
+            "nameEn": "Curaçao",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1305,
+            "code": "LA",
+            "name": "Лаос",
+            "alpha3": "LAO",
+            "nameEn": "Laos",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1155,
+            "code": "LV",
+            "name": "Латвия",
+            "alpha3": "LVA",
+            "nameEn": "Latvia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1156,
+            "code": "LS",
+            "name": "Лесото",
+            "alpha3": "LSO",
+            "nameEn": "Lesotho",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1159,
+            "code": "LR",
+            "name": "Либерия",
+            "alpha3": "LBR",
+            "nameEn": "Liberia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1157,
+            "code": "LB",
+            "name": "Ливан",
+            "alpha3": "LBN",
+            "nameEn": "Lebanon",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1158,
+            "code": "LY",
+            "name": "Ливийская Арабская Джамахирия",
+            "alpha3": "LBY",
+            "nameEn": "Libyan Arab Jamahiriya",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1161,
+            "code": "LT",
+            "name": "Литва",
+            "alpha3": "LTU",
+            "nameEn": "Lithuania",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1160,
+            "code": "LI",
+            "name": "Лихтенштейн",
+            "alpha3": "LIE",
+            "nameEn": "Liechtenstein",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1162,
+            "code": "LU",
+            "name": "Люксембург",
+            "alpha3": "LUX",
+            "nameEn": "Luxembourg",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1163,
+            "code": "MU",
+            "name": "Маврикий",
+            "alpha3": "MUS",
+            "nameEn": "Mauritius",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1164,
+            "code": "MR",
+            "name": "Мавритания",
+            "alpha3": "MRT",
+            "nameEn": "Mauritania",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1165,
+            "code": "MG",
+            "name": "Мадагаскар",
+            "alpha3": "MDG",
+            "nameEn": "Madagascar",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1166,
+            "code": "YT",
+            "name": "Майотта",
+            "alpha3": "MYT",
+            "nameEn": "Mayotte",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1167,
+            "code": "MO",
+            "name": "Макао",
+            "alpha3": "MAC",
+            "nameEn": "Macao",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1168,
+            "code": "MW",
+            "name": "Малави",
+            "alpha3": "MWI",
+            "nameEn": "Malawi",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1169,
+            "code": "MY",
+            "name": "Малайзия",
+            "alpha3": "MYS",
+            "nameEn": "Malaysia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1170,
+            "code": "ML",
+            "name": "Мали",
+            "alpha3": "MLI",
+            "nameEn": "Mali",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1298,
+            "code": "UM",
+            "name": "Малые Тихоокеанские отдаленные острова Соединенных Штатов",
+            "alpha3": "UMI",
+            "nameEn": "United States Minor Outlying Islands",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1311,
+            "code": "MV",
+            "name": "Мальдивская Республика",
+            "alpha3": "MDV",
+            "nameEn": "Republic of Maldives",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1171,
+            "code": "MT",
+            "name": "Мальта",
+            "alpha3": "MLT",
+            "nameEn": "Malta",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1172,
+            "code": "MA",
+            "name": "Марокко",
+            "alpha3": "MAR",
+            "nameEn": "Morocco",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1173,
+            "code": "MQ",
+            "name": "Мартиника",
+            "alpha3": "MTQ",
+            "nameEn": "Martinique",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1174,
+            "code": "MH",
+            "name": "Маршалловы острова",
+            "alpha3": "MHL",
+            "nameEn": "Marshall Islands",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1175,
+            "code": "MX",
+            "name": "Мексика",
+            "alpha3": "MEX",
+            "nameEn": "Mexico",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1176,
+            "code": "FM",
+            "name": "Микронезия, Федеративные Штаты",
+            "alpha3": "FSM",
+            "nameEn": "Micronesia, Federated States of",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1177,
+            "code": "MZ",
+            "name": "Мозамбик",
+            "alpha3": "MOZ",
+            "nameEn": "Mozambique",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1178,
+            "code": "MD",
+            "name": "Молдова, Республика",
+            "alpha3": "MDA",
+            "nameEn": "Moldova",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1179,
+            "code": "MC",
+            "name": "Монако",
+            "alpha3": "MCO",
+            "nameEn": "Monaco",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1180,
+            "code": "MN",
+            "name": "Монголия",
+            "alpha3": "MNG",
+            "nameEn": "Mongolia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1181,
+            "code": "MS",
+            "name": "Монтсеррат",
+            "alpha3": "MSR",
+            "nameEn": "Montserrat",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1182,
+            "code": "MM",
+            "name": "Мьянма",
+            "alpha3": "MMR",
+            "nameEn": "Burma",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1183,
+            "code": "NA",
+            "name": "Намибия",
+            "alpha3": "NAM",
+            "nameEn": "Namibia",
+            "isAvailableForDistribution": false,
+            "countryGroup": null,
+            "countryGroupEn": null
+        },
+        {
+            "id": 1184,
+            "code": "NR",
+            "name": "Науру",
+            "alpha3": "NRU",
+            "nameEn": "Nauru",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1313,
+            "code": "ZZ",
+            "name": "Неизвестная страна",
+            "alpha3": "ZZZ",
+            "nameEn": "Unknown country",
+            "isAvailableForDistribution": false,
+            "countryGroup": null,
+            "countryGroupEn": null
+        },
+        {
+            "id": 1185,
+            "code": "NP",
+            "name": "Непал",
+            "alpha3": "NPL",
+            "nameEn": "Nepal",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1186,
+            "code": "NE",
+            "name": "Нигер",
+            "alpha3": "NER",
+            "nameEn": "Niger",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1187,
+            "code": "NG",
+            "name": "Нигерия",
+            "alpha3": "NGA",
+            "nameEn": "Nigeria",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1304,
+            "code": "AN",
+            "name": "Нидерландские Антилы",
+            "alpha3": "ANT",
+            "nameEn": "Netherlands Antilles",
+            "isAvailableForDistribution": false,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1188,
+            "code": "NL",
+            "name": "Нидерланды",
+            "alpha3": "NLD",
+            "nameEn": "Netherlands",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1189,
+            "code": "NI",
+            "name": "Никарагуа",
+            "alpha3": "NIC",
+            "nameEn": "Nicaragua",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1190,
+            "code": "NU",
+            "name": "Ниуэ",
+            "alpha3": "NIU",
+            "nameEn": "Niue",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1191,
+            "code": "NZ",
+            "name": "Новая Зеландия",
+            "alpha3": "NZL",
+            "nameEn": "New Zealand",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1192,
+            "code": "NC",
+            "name": "Новая Каледония",
+            "alpha3": "NCL",
+            "nameEn": "New Caledonia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1193,
+            "code": "NO",
+            "name": "Норвегия",
+            "alpha3": "NOR",
+            "nameEn": "Norway",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1194,
+            "code": "AE",
+            "name": "Объединенные Арабские Эмираты",
+            "alpha3": "ARE",
+            "nameEn": "United Arab Emirates",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1195,
+            "code": "OM",
+            "name": "Оман",
+            "alpha3": "OMN",
+            "nameEn": "Oman",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1196,
+            "code": "BV",
+            "name": "Остров Буве",
+            "alpha3": "BVT",
+            "nameEn": "Bouvet Island",
+            "isAvailableForDistribution": false,
+            "countryGroup": null,
+            "countryGroupEn": null
+        },
+        {
+            "id": 1197,
+            "code": "IM",
+            "name": "Остров Мэн",
+            "alpha3": "IMN",
+            "nameEn": "Isle of Man",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1198,
+            "code": "NF",
+            "name": "Остров Норфолк",
+            "alpha3": "NFK",
+            "nameEn": "Norfolk Island",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1199,
+            "code": "CX",
+            "name": "Остров Рождества",
+            "alpha3": "CXR",
+            "nameEn": "Christmas Island",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1200,
+            "code": "HM",
+            "name": "Остров Херд и острова Макдональд",
+            "alpha3": "HMD",
+            "nameEn": "Heard Island and McDonald Islands",
+            "isAvailableForDistribution": false,
+            "countryGroup": null,
+            "countryGroupEn": null
+        },
+        {
+            "id": 1201,
+            "code": "KY",
+            "name": "Острова Кайман",
+            "alpha3": "CYM",
+            "nameEn": "Cayman Islands",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1202,
+            "code": "CK",
+            "name": "Острова Кука",
+            "alpha3": "COK",
+            "nameEn": "Cook Islands",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1203,
+            "code": "TC",
+            "name": "Острова Теркс и Кайкос",
+            "alpha3": "TCA",
+            "nameEn": "Turks and Caicos Islands",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1204,
+            "code": "PK",
+            "name": "Пакистан",
+            "alpha3": "PAK",
+            "nameEn": "Pakistan",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1205,
+            "code": "PW",
+            "name": "Палау",
+            "alpha3": "PLW",
+            "nameEn": "Palau",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1206,
+            "code": "PS",
+            "name": "Палестинская территория, оккупированная",
+            "alpha3": "PSE",
+            "nameEn": "Palestinian Territory, Occupied",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1207,
+            "code": "PA",
+            "name": "Панама",
+            "alpha3": "PAN",
+            "nameEn": "Panama",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1208,
+            "code": "VA",
+            "name": "Папский Престол (Государство &mdash; город Ватикан)",
+            "alpha3": "VAT",
+            "nameEn": "Holy See (Vatican City State)",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1209,
+            "code": "PG",
+            "name": "Папуа-Новая Гвинея",
+            "alpha3": "PNG",
+            "nameEn": "Papua New Guinea",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1210,
+            "code": "PY",
+            "name": "Парагвай",
+            "alpha3": "PRY",
+            "nameEn": "Paraguay",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1211,
+            "code": "PE",
+            "name": "Перу",
+            "alpha3": "PER",
+            "nameEn": "Peru",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1212,
+            "code": "PN",
+            "name": "Питкерн",
+            "alpha3": "PCN",
+            "nameEn": "Pitcairn",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1213,
+            "code": "PL",
+            "name": "Польша",
+            "alpha3": "POL",
+            "nameEn": "Poland",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1214,
+            "code": "PT",
+            "name": "Португалия",
+            "alpha3": "PRT",
+            "nameEn": "Portugal",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1215,
+            "code": "PR",
+            "name": "Пуэрто-Рико",
+            "alpha3": "PRI",
+            "nameEn": "Puerto Rico",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1216,
+            "code": "MK",
+            "name": "Республика Македония",
+            "alpha3": "MKD",
+            "nameEn": "Macedonia, The Former Yugoslav Republic Of",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1217,
+            "code": "RE",
+            "name": "Реюньон",
+            "alpha3": "REU",
+            "nameEn": "Reunion",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 549,
+            "code": "RU",
+            "name": "Россия",
+            "alpha3": "RUS",
+            "nameEn": "Russian Federation",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1219,
+            "code": "RW",
+            "name": "Руанда",
+            "alpha3": "RWA",
+            "nameEn": "Rwanda",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1220,
+            "code": "RO",
+            "name": "Румыния",
+            "alpha3": "ROU",
+            "nameEn": "Romania",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1303,
+            "code": "SV",
+            "name": "Сальвадор",
+            "alpha3": "SLV",
+            "nameEn": "El Salvador",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1221,
+            "code": "WS",
+            "name": "Самоа",
+            "alpha3": "WSM",
+            "nameEn": "Samoa",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1222,
+            "code": "SM",
+            "name": "Сан-Марино",
+            "alpha3": "SMR",
+            "nameEn": "San Marino",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1223,
+            "code": "ST",
+            "name": "Сан-Томе и Принсипи",
+            "alpha3": "STP",
+            "nameEn": "Sao Tome and Principe",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1224,
+            "code": "SA",
+            "name": "Саудовская Аравия",
+            "alpha3": "SAU",
+            "nameEn": "Saudi Arabia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1297,
+            "code": "SH",
+            "name": "Святая Елена, Остров вознесения, Тристан-да-Кунья",
+            "alpha3": "SHN",
+            "nameEn": "Saint Helena, Ascension And Tristan Da Cunha",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1310,
+            "code": "MP",
+            "name": "Северные Марианские Острова",
+            "alpha3": "MNP",
+            "nameEn": "Northern Mariana Islands",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1233,
+            "code": "SC",
+            "name": "Сейшелы",
+            "alpha3": "SYC",
+            "nameEn": "Seychelles",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1225,
+            "code": "BL",
+            "name": "Сен-Бартельми",
+            "alpha3": "BLM",
+            "nameEn": "Saint Barthélemy",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1226,
+            "code": "MF",
+            "name": "Сен-Мартен",
+            "alpha3": "MAF",
+            "nameEn": "Saint Martin (French Part)",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1227,
+            "code": "SN",
+            "name": "Сенегал",
+            "alpha3": "SEN",
+            "nameEn": "Senegal",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1228,
+            "code": "VC",
+            "name": "Сент-Винсент и Гренадины",
+            "alpha3": "VCT",
+            "nameEn": "Saint Vincent and the Grenadines",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1229,
+            "code": "KN",
+            "name": "Сент-Китс и Невис",
+            "alpha3": "KNA",
+            "nameEn": "Saint Kitts and Nevis",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1230,
+            "code": "LC",
+            "name": "Сент-Люсия",
+            "alpha3": "LCA",
+            "nameEn": "Saint Lucia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1231,
+            "code": "PM",
+            "name": "Сент-Пьер и Микелон",
+            "alpha3": "SPM",
+            "nameEn": "Saint Pierre and Miquelon",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1232,
+            "code": "RS",
+            "name": "Сербия",
+            "alpha3": "SRB",
+            "nameEn": "Serbia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1234,
+            "code": "SG",
+            "name": "Сингапур",
+            "alpha3": "SGP",
+            "nameEn": "Singapore",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1235,
+            "code": "SX",
+            "name": "Синт-Мартен",
+            "alpha3": "SXM",
+            "nameEn": "Sint Maarten",
+            "isAvailableForDistribution": false,
+            "countryGroup": null,
+            "countryGroupEn": null
+        },
+        {
+            "id": 1236,
+            "code": "SY",
+            "name": "Сирийская Арабская Республика",
+            "alpha3": "SYR",
+            "nameEn": "Syrian Arab Republic",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1237,
+            "code": "SK",
+            "name": "Словакия",
+            "alpha3": "SVK",
+            "nameEn": "Slovakia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1238,
+            "code": "SI",
+            "name": "Словения",
+            "alpha3": "SVN",
+            "nameEn": "Slovenia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1239,
+            "code": "GB",
+            "name": "Соединенное Королевство",
+            "alpha3": "GBR",
+            "nameEn": "United Kingdom",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1240,
+            "code": "US",
+            "name": "Соединенные Штаты Америки (США)",
+            "alpha3": "USA",
+            "nameEn": "United States",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1241,
+            "code": "SB",
+            "name": "Соломоновы острова",
+            "alpha3": "SLB",
+            "nameEn": "Solomon Islands",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1242,
+            "code": "SO",
+            "name": "Сомали",
+            "alpha3": "SOM",
+            "nameEn": "Somalia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1243,
+            "code": "SD",
+            "name": "Судан",
+            "alpha3": "SDN",
+            "nameEn": "Sudan",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1244,
+            "code": "SR",
+            "name": "Суринам",
+            "alpha3": "SUR",
+            "nameEn": "Suriname",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1245,
+            "code": "SL",
+            "name": "Сьерра-Леоне",
+            "alpha3": "SLE",
+            "nameEn": "Sierra Leone",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1246,
+            "code": "TJ",
+            "name": "Таджикистан",
+            "alpha3": "TJK",
+            "nameEn": "Tajikistan",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1247,
+            "code": "TH",
+            "name": "Таиланд",
+            "alpha3": "THA",
+            "nameEn": "Thailand",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1248,
+            "code": "TW",
+            "name": "Тайвань (Китай)",
+            "alpha3": "TWN",
+            "nameEn": "Taiwan, Province of China",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1249,
+            "code": "TZ",
+            "name": "Танзания, Объединенная Республика",
+            "alpha3": "TZA",
+            "nameEn": "Tanzania, United Republic Of",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1250,
+            "code": "TL",
+            "name": "Тимор-Лесте",
+            "alpha3": "TLS",
+            "nameEn": "Timor-Leste",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1251,
+            "code": "TG",
+            "name": "Того",
+            "alpha3": "TGO",
+            "nameEn": "Togo",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1252,
+            "code": "TK",
+            "name": "Токелау",
+            "alpha3": "TKL",
+            "nameEn": "Tokelau",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1253,
+            "code": "TO",
+            "name": "Тонга",
+            "alpha3": "TON",
+            "nameEn": "Tonga",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1254,
+            "code": "TT",
+            "name": "Тринидад и Тобаго",
+            "alpha3": "TTO",
+            "nameEn": "Trinidad and Tobago",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1255,
+            "code": "TV",
+            "name": "Тувалу",
+            "alpha3": "TUV",
+            "nameEn": "Tuvalu",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1256,
+            "code": "TN",
+            "name": "Тунис",
+            "alpha3": "TUN",
+            "nameEn": "Tunisia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1257,
+            "code": "TM",
+            "name": "Туркмения",
+            "alpha3": "TKM",
+            "nameEn": "Turkmenistan",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1258,
+            "code": "TR",
+            "name": "Турция",
+            "alpha3": "TUR",
+            "nameEn": "Turkey",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1259,
+            "code": "UG",
+            "name": "Уганда",
+            "alpha3": "UGA",
+            "nameEn": "Uganda",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1260,
+            "code": "UZ",
+            "name": "Узбекистан",
+            "alpha3": "UZB",
+            "nameEn": "Uzbekistan",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1261,
+            "code": "UA",
+            "name": "Украина",
+            "alpha3": "UKR",
+            "nameEn": "Ukraine",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1262,
+            "code": "WF",
+            "name": "Уоллис и Футуна",
+            "alpha3": "WLF",
+            "nameEn": "Wallis and Futuna",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1263,
+            "code": "UY",
+            "name": "Уругвай",
+            "alpha3": "URY",
+            "nameEn": "Uruguay",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1264,
+            "code": "FO",
+            "name": "Фарерские острова",
+            "alpha3": "FRO",
+            "nameEn": "Faroe Islands",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1265,
+            "code": "FJ",
+            "name": "Фиджи",
+            "alpha3": "FJI",
+            "nameEn": "Fiji",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1266,
+            "code": "PH",
+            "name": "Филиппины",
+            "alpha3": "PHL",
+            "nameEn": "Philippines",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1267,
+            "code": "FI",
+            "name": "Финляндия",
+            "alpha3": "FIN",
+            "nameEn": "Finland",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1268,
+            "code": "FK",
+            "name": "Фолклендские острова (Мальвинские)",
+            "alpha3": "FLK",
+            "nameEn": "Falkland Islands (Malvinas)",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1269,
+            "code": "FR",
+            "name": "Франция",
+            "alpha3": "FRA",
+            "nameEn": "France",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1270,
+            "code": "GF",
+            "name": "Французская Гвиана",
+            "alpha3": "GUF",
+            "nameEn": "French Guiana",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1271,
+            "code": "PF",
+            "name": "Французская Полинезия",
+            "alpha3": "PYF",
+            "nameEn": "French Polynesia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Океания",
+            "countryGroupEn": "Oceania"
+        },
+        {
+            "id": 1272,
+            "code": "TF",
+            "name": "Французские Южные территории",
+            "alpha3": "ATF",
+            "nameEn": "French Southern Territories",
+            "isAvailableForDistribution": false,
+            "countryGroup": null,
+            "countryGroupEn": null
+        },
+        {
+            "id": 1273,
+            "code": "HR",
+            "name": "Хорватия",
+            "alpha3": "HRV",
+            "nameEn": "Croatia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1274,
+            "code": "CF",
+            "name": "Центрально-Африканская Республика",
+            "alpha3": "CAF",
+            "nameEn": "Central African Republic",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1275,
+            "code": "TD",
+            "name": "Чад",
+            "alpha3": "TCD",
+            "nameEn": "Chad",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1276,
+            "code": "ME",
+            "name": "Черногория",
+            "alpha3": "MNE",
+            "nameEn": "Montenegro",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1277,
+            "code": "CZ",
+            "name": "Чешская Республика",
+            "alpha3": "CZE",
+            "nameEn": "Czech Republic",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1278,
+            "code": "CL",
+            "name": "Чили",
+            "alpha3": "CHL",
+            "nameEn": "Chile",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1279,
+            "code": "CH",
+            "name": "Швейцария",
+            "alpha3": "CHE",
+            "nameEn": "Switzerland",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1280,
+            "code": "SE",
+            "name": "Швеция",
+            "alpha3": "SWE",
+            "nameEn": "Sweden",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1281,
+            "code": "SJ",
+            "name": "Шпицберген и Ян Майен",
+            "alpha3": "SJM",
+            "nameEn": "Svalbard and Jan Mayen",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1282,
+            "code": "LK",
+            "name": "Шри-Ланка",
+            "alpha3": "LKA",
+            "nameEn": "Sri Lanka",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1283,
+            "code": "EC",
+            "name": "Эквадор",
+            "alpha3": "ECU",
+            "nameEn": "Ecuador",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1284,
+            "code": "GQ",
+            "name": "Экваториальная Гвинея",
+            "alpha3": "GNQ",
+            "nameEn": "Equatorial Guinea",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1285,
+            "code": "AX",
+            "name": "Эландские острова",
+            "alpha3": "ALA",
+            "nameEn": "Åland Islands",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1287,
+            "code": "ER",
+            "name": "Эритрея",
+            "alpha3": "ERI",
+            "nameEn": "Eritrea",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1288,
+            "code": "SZ",
+            "name": "Эсватини",
+            "alpha3": "SWZ",
+            "nameEn": "Eswatini",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1289,
+            "code": "EE",
+            "name": "Эстония",
+            "alpha3": "EST",
+            "nameEn": "Estonia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Европа",
+            "countryGroupEn": "Europe"
+        },
+        {
+            "id": 1290,
+            "code": "ET",
+            "name": "Эфиопия",
+            "alpha3": "ETH",
+            "nameEn": "Ethiopia",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1291,
+            "code": "ZA",
+            "name": "Южная Африка",
+            "alpha3": "ZAF",
+            "nameEn": "South Africa",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1292,
+            "code": "GS",
+            "name": "Южная Джорджия и Южные Сандвичевы острова",
+            "alpha3": "SGS",
+            "nameEn": "South Georgia and the South Sandwich Islands",
+            "isAvailableForDistribution": false,
+            "countryGroup": null,
+            "countryGroupEn": null
+        },
+        {
+            "id": 1300,
+            "code": "KR",
+            "name": "Южная Корея",
+            "alpha3": "KOR",
+            "nameEn": "South Korea",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1293,
+            "code": "OS",
+            "name": "Южная Осетия",
+            "alpha3": "OST",
+            "nameEn": "South Ossetia",
+            "isAvailableForDistribution": false,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        },
+        {
+            "id": 1294,
+            "code": "SS",
+            "name": "Южный Судан",
+            "alpha3": "SSD",
+            "nameEn": "South Sudan",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Африка",
+            "countryGroupEn": "Africa"
+        },
+        {
+            "id": 1295,
+            "code": "JM",
+            "name": "Ямайка",
+            "alpha3": "JAM",
+            "nameEn": "Jamaica",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Америка",
+            "countryGroupEn": "America"
+        },
+        {
+            "id": 1296,
+            "code": "JP",
+            "name": "Япония",
+            "alpha3": "JPN",
+            "nameEn": "Japan",
+            "isAvailableForDistribution": true,
+            "countryGroup": "Азия",
+            "countryGroupEn": "Asia"
+        }
+    ],
+    "statusCode": 200
+}
