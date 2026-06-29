@@ -1092,29 +1092,14 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                limit:
-                  type: integer
-                skip:
-                  type: integer
+              $ref: '#/components/schemas/SupportCasesRequest'
       responses:
-        '200':
-          description: Форма ответа не подтверждена.
-  /support/cases:
-    post:
-      tags:
-      - Support
-      summary: Создать обращение
-      requestBody:
-        description: Тело запроса не подтверждено.
-        content:
-          application/json:
-            schema:
-              type: object
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
+        '201':
+          description: Список обращений.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportCasesResponse'
   /support/cases/{id}:
     get:
       tags:
@@ -1130,56 +1115,11 @@ paths:
         description: ID обращения.
       responses:
         '200':
-          description: Форма ответа не подтверждена.
-  /support/cases/{id}/message/:
-    post:
-      tags:
-      - Support
-      summary: Добавить сообщение в обращение
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-        description: ID обращения.
-      requestBody:
-        description: Тело запроса не подтверждено.
-        content:
-          application/json:
-            schema:
-              type: object
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
-  /support/cases/{id}/media:
-    post:
-      tags:
-      - Support
-      summary: Прикрепить медиа к обращению
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-        description: ID обращения.
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                file:
-                  type: string
-                  format: binary
-                  description: Вложение.
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
+          description: Обращение.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SupportCaseResponse'
   /support/types:
     get:
       tags:
@@ -1889,6 +1829,116 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SupportType'
+        statusCode:
+          type: integer
+          example: 200
+    SupportCasesRequest:
+      type: object
+      properties:
+        limit:
+          type: integer
+          example: 10
+        skip:
+          type: integer
+          example: 0
+    SupportParticipant:
+      type: object
+      nullable: true
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        firstName:
+          type: string
+        middleName:
+          type: string
+        lastName:
+          type: string
+        nickName:
+          type: string
+        level:
+          type: string
+    SupportAdmin:
+      type: object
+      nullable: true
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        role:
+          type: string
+    SupportAttachment:
+      type: object
+      additionalProperties: true
+    SupportMessage:
+      type: object
+      properties:
+        caseId:
+          type: integer
+        messageId:
+          type: integer
+        text:
+          type: string
+        seen:
+          type: boolean
+        admin:
+          $ref: '#/components/schemas/SupportAdmin'
+        client:
+          $ref: '#/components/schemas/SupportParticipant'
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupportAttachment'
+        dtCreate:
+          type: string
+    SupportCase:
+      type: object
+      properties:
+        id:
+          type: integer
+        caseTypeId:
+          type: integer
+        level:
+          type: string
+        status:
+          type: string
+        dtCreate:
+          type: string
+        dtUpdate:
+          type: string
+        seen:
+          type: boolean
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/SupportMessage'
+        client:
+          $ref: '#/components/schemas/SupportParticipant'
+    SupportCasesResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            data:
+              type: array
+              items:
+                $ref: '#/components/schemas/SupportCase'
+            count:
+              type: integer
+        statusCode:
+          type: integer
+          example: 201
+    SupportCaseResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/SupportCase'
         statusCode:
           type: integer
           example: 200

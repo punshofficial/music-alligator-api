@@ -39,3 +39,9 @@
 - `POST /client/bank_data` — изменение банковских реквизитов.
 - `POST /client/document` — загрузка клиентского документа.
 - `POST /documents/contracts` — подписание договора.
+
+## Support
+
+- `POST /support/cases` — создание обращения.
+- `POST /support/cases/{id}/message/` — добавление сообщения в обращение.
+- `POST /support/cases/{id}/media` — загрузка вложения в обращение.

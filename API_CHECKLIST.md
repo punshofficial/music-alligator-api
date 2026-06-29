@@ -86,12 +86,9 @@
 
 ## Support
 
-- 🟡 `GET /support/types`
-- ❌ `GET /support/cases/{id}`
-- 🟡 `POST /support`
-- ⛔ `POST /support/cases`
-- ⛔ `POST /support/cases/{id}/message/`
-- ⛔ `POST /support/cases/{id}/media`
+- ✅ `GET /support/types`
+- ✅ `GET /support/cases/{id}`
+- ✅ `POST /support`
 
 ## System
 

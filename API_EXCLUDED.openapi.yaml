@@ -19,6 +19,8 @@ tags:
   description: Финансовые операции, исключённые из текущего покрытия
 - name: Client
   description: Клиентские write endpoint'ы, исключённые из текущего покрытия
+- name: Support
+  description: Write endpoint'ы поддержки, исключённые из текущего покрытия
 paths:
   /auth/sign_up:
     post:
@@ -425,6 +427,68 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ContractSignRequest'
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /support/cases:
+    post:
+      tags:
+      - Support
+      summary: Создать обращение
+      requestBody:
+        description: Тело запроса не подтверждено.
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /support/cases/{id}/message/:
+    post:
+      tags:
+      - Support
+      summary: Добавить сообщение в обращение
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID обращения.
+      requestBody:
+        description: Тело запроса не подтверждено.
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /support/cases/{id}/media:
+    post:
+      tags:
+      - Support
+      summary: Прикрепить медиа к обращению
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID обращения.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
       responses:
         '200':
           description: Форма ответа не подтверждена.
