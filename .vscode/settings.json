@@ -1,5 +1,8 @@
 {
     "yaml.schemas": {
-        "swaggerviewer:openapi": "file:///Users/punsh/Projects/Github/music-alligator-api/musicalligator.openapi.yaml"
+        "https://spec.openapis.org/oas/3.0/schema/2021-09-28": [
+            "musicalligator.openapi.yaml",
+            "API_EXCLUDED.openapi.yaml"
+        ]
     }
 }

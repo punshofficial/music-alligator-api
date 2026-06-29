@@ -7,15 +7,12 @@
 - ❌ не проверено
 - ⛔ не трогать без отдельного подтверждения
 
+Исключённые из текущего покрытия endpoint'ы вынесены в `API_EXCLUDED.md`.
+
 ## Auth
 
-- ✅ `GET /auth/authenticate` — 200-схема добавлена
-- ❌ `POST /auth/sign_in`
-- ❌ `POST /auth/sign_up`
-- ❌ `POST /auth/send_confirm_code`
-- ❌ `POST /auth/confirm_code`
-- ⛔ `POST /auth/change_password`
-- ⛔ `POST /auth/update_password`
+- ✅ `GET /auth/authenticate` — 200-схема подтверждена текущей сессией
+- 🟡 `POST /auth/sign_in` — request/response уточнены по фронту: `{ login, password }` -> `sessionToken`; не вызывали без тестовых учётных данных
 
 ## Releases
 
@@ -66,14 +63,6 @@
 - ✅ `POST /labels` — создан тестовый лейбл
 - ✅ `PUT /labels/{id}` — проверено на тестовом лейбле Codex, 200 `StatusResponse`
 
-## Bandlinks
-
-- 🟡 `POST /multi_links` — может быть списком или созданием, нужен безопасный payload
-- ❌ `POST /multi_links/name_exists`
-- ❌ `PUT /multi_links/{id}` — тестировать только на тестовой сущности
-- ⛔ `DELETE /multi_links/{id}`
-- ⛔ `DELETE /releases/{releaseId}/multi_links/{linkId}`
-
 ## Statistics
 
 - ✅ `GET /statistics/filters` — подтверждено: `platformIds`, `countryIds`
@@ -101,16 +90,6 @@
 - ⛔ `POST /client/bank_data`
 - ⛔ `POST /client/document`
 - ❌ `POST /documents/contracts`
-
-## Packages
-
-- ✅ `GET /packages/types` — 200-схема добавлена
-- 🟡 `GET /packages` — подтверждён wrapper, массив был пустой
-- 🟡 `GET /packages/my` — подтверждён wrapper, массив был пустой
-- ⛔ `GET /packages/moderation`
-- ⛔ `POST /packages/{id}`
-- ⛔ `POST /packages/my/{id}/pay`
-- ⛔ `DELETE /packages/my/{id}`
 
 ## Support
 

@@ -22,16 +22,12 @@ tags:
   description: Участники (авторы, продюсеры и т.п.)
 - name: Labels
   description: Лейблы
-- name: Bandlinks
-  description: Бандлинки (мульти-ссылки)
 - name: Statistics
   description: Статистика прослушиваний
 - name: Finance
   description: Финансы и выплаты
 - name: Client
   description: Клиент, профиль и документы
-- name: Packages
-  description: Продвижение и пакеты
 - name: Support
   description: Поддержка
 - name: System
@@ -42,138 +38,20 @@ paths:
       tags:
       - Auth
       summary: Вход
+      security: []
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                password:
-                  type: string
-              required:
-              - email
-              - password
+              $ref: '#/components/schemas/AuthSignInRequest'
       responses:
         '201':
-          description: Артист создан.
+          description: Вход выполнен.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/IdResponse'
-  /auth/sign_up:
-    post:
-      tags:
-      - Auth
-      summary: Регистрация
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                password:
-                  type: string
-              required:
-              - email
-              - password
-      responses:
-        '201':
-          description: Лейбл создан.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LabelCreateResponse'
-  /auth/send_confirm_code:
-    post:
-      tags:
-      - Auth
-      summary: Отправить код подтверждения
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-              required:
-              - email
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
-  /auth/confirm_code:
-    post:
-      tags:
-      - Auth
-      summary: Подтвердить код
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                code:
-                  type: string
-              required:
-              - email
-              - code
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
-  /auth/change_password:
-    post:
-      tags:
-      - Auth
-      summary: Сменить пароль
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                oldPassword:
-                  type: string
-                newPassword:
-                  type: string
-              required:
-              - oldPassword
-              - newPassword
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
-  /auth/update_password:
-    post:
-      tags:
-      - Auth
-      summary: Обновить пароль по токену
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                token:
-                  type: string
-                password:
-                  type: string
-              required:
-              - token
-              - password
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
+                $ref: '#/components/schemas/AuthSignInResponse'
   /auth/authenticate:
     get:
       tags:
@@ -908,102 +786,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatusResponse'
-  /multi_links:
-    post:
-      tags:
-      - Bandlinks
-      summary: Список или создание бандлинка
-      description: Список (search/limit/skip) либо создание (name/...). Конкретное тело зависит от сценария
-        и не полностью подтверждено.
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                search:
-                  type: string
-                limit:
-                  type: integer
-                skip:
-                  type: integer
-                name:
-                  type: string
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
-  /multi_links/{id}:
-    parameters:
-    - name: id
-      in: path
-      required: true
-      schema:
-        type: integer
-        format: int64
-      description: ID бандлинка.
-    put:
-      tags:
-      - Bandlinks
-      summary: Обновить бандлинк
-      requestBody:
-        description: Тело запроса не подтверждено.
-        content:
-          application/json:
-            schema:
-              type: object
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
-    delete:
-      tags:
-      - Bandlinks
-      summary: Удалить бандлинк
-      responses:
-        '200':
-          description: Бандлинк удалён.
-  /multi_links/name_exists:
-    post:
-      tags:
-      - Bandlinks
-      summary: Проверить занятость имени
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-              required:
-              - name
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
-  /releases/{releaseId}/multi_links/{linkId}:
-    delete:
-      tags:
-      - Bandlinks
-      summary: Открепить бандлинк от релиза
-      parameters:
-      - name: releaseId
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-        description: ID релиза.
-      - name: linkId
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-        description: ID бандлинка.
-      responses:
-        '200':
-          description: Бандлинк откреплён.
   /statistics:
     post:
       tags:
@@ -1310,142 +1092,6 @@ paths:
       responses:
         '200':
           description: Форма ответа не подтверждена.
-  /packages/types:
-    get:
-      tags:
-      - Packages
-      summary: Типы пакетов
-      responses:
-        '200':
-          description: Типы пакетов.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PackageTypesResponse'
-  /packages:
-    get:
-      tags:
-      - Packages
-      summary: Список пакетов
-      parameters:
-      - name: packageListId
-        in: query
-        required: false
-        schema:
-          type: integer
-      - name: lang
-        in: query
-        required: false
-        schema:
-          type: string
-      responses:
-        '200':
-          description: Список пакетов.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PackagesResponse'
-  /packages/my:
-    get:
-      tags:
-      - Packages
-      summary: Мои пакеты
-      parameters:
-      - name: packageListId
-        in: query
-        required: false
-        schema:
-          type: integer
-      responses:
-        '200':
-          description: Мои пакеты.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PackagesResponse'
-  /packages/moderation:
-    get:
-      tags:
-      - Packages
-      summary: Пакеты на модерации
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
-  /packages/{id}:
-    post:
-      tags:
-      - Packages
-      summary: Заказать пакет
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-        description: ID пакета.
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                comment:
-                  type: string
-                releaseId:
-                  type: integer
-                telegram:
-                  type: string
-                budget:
-                  type: number
-                releaseLink:
-                  type: string
-                currency:
-                  type: string
-                finReqId:
-                  type: integer
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
-  /packages/my/{id}/pay:
-    post:
-      tags:
-      - Packages
-      summary: Оплатить пакет
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-        description: ID пакета.
-      requestBody:
-        description: Тело запроса не подтверждено.
-        content:
-          application/json:
-            schema:
-              type: object
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
-  /packages/my/{id}:
-    delete:
-      tags:
-      - Packages
-      summary: Удалить мой пакет
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          format: int64
-        description: ID пакета.
-      responses:
-        '200':
-          description: Пакет удалён.
   /support:
     post:
       tags:
@@ -1625,6 +1271,29 @@ components:
               type: string
           - type: object
             additionalProperties: {}
+    AuthSignInRequest:
+      type: object
+      properties:
+        login:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+      required:
+      - login
+      - password
+    AuthSignInResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            sessionToken:
+              type: string
+        statusCode:
+          type: integer
+          example: 201
     AuthBalance:
       type: object
       properties:
@@ -1914,39 +1583,6 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/ContractDocument'
-        statusCode:
-          type: integer
-          example: 200
-    PackageType:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        nameEn:
-          type: string
-        parentId:
-          type: integer
-          nullable: true
-        shortName:
-          type: string
-    PackageTypesResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/PackageType'
-        statusCode:
-          type: integer
-          example: 200
-    PackagesResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items: {}
         statusCode:
           type: integer
           example: 200

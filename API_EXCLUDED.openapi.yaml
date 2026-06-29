@@ -1,0 +1,466 @@
+openapi: 3.0.3
+info:
+  title: MusicAlligator API - Excluded Endpoints
+  version: 0.1.0
+  description: Endpoint'ы, исключённые из текущей рабочей OpenAPI-документации. Хранятся отдельно, чтобы их можно было вернуть без повторного reverse engineering.
+servers:
+- url: https://v2api.musicalligator.ru/api
+  description: Production
+security:
+- tokenAuth: []
+tags:
+- name: Auth
+  description: Аутентификация, исключённая из текущего покрытия
+- name: Bandlinks
+  description: Бандлинки, исключённые из текущего покрытия
+- name: Packages
+  description: Пакеты, исключённые из текущего покрытия
+paths:
+  /auth/sign_up:
+    post:
+      tags:
+      - Auth
+      summary: Регистрация
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthSignUpRequest'
+      responses:
+        '201':
+          description: Регистрация начата.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthPasswordTokenResponse'
+  /auth/send_confirm_code:
+    post:
+      tags:
+      - Auth
+      summary: Отправить код подтверждения
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthSendConfirmCodeRequest'
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /auth/confirm_code:
+    post:
+      tags:
+      - Auth
+      summary: Подтвердить код
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthConfirmCodeRequest'
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /auth/change_password:
+    post:
+      tags:
+      - Auth
+      summary: Сменить пароль по токену восстановления
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthChangePasswordRequest'
+      responses:
+        '200':
+          description: Пароль изменён, выдан новый passwordToken для подтверждения.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthPasswordTokenResponse'
+  /auth/update_password:
+    post:
+      tags:
+      - Auth
+      summary: Обновить пароль в профиле
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthUpdatePasswordRequest'
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /multi_links:
+    post:
+      tags:
+      - Bandlinks
+      summary: Список или создание бандлинка
+      description: Список (search/limit/skip) либо создание (name/...). Конкретное тело зависит от сценария и не полностью подтверждено.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                search:
+                  type: string
+                limit:
+                  type: integer
+                skip:
+                  type: integer
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /multi_links/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+      description: ID бандлинка.
+    put:
+      tags:
+      - Bandlinks
+      summary: Обновить бандлинк
+      requestBody:
+        description: Тело запроса не подтверждено.
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+    delete:
+      tags:
+      - Bandlinks
+      summary: Удалить бандлинк
+      responses:
+        '200':
+          description: Бандлинк удалён.
+  /multi_links/name_exists:
+    post:
+      tags:
+      - Bandlinks
+      summary: Проверить занятость имени
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /releases/{releaseId}/multi_links/{linkId}:
+    delete:
+      tags:
+      - Bandlinks
+      summary: Открепить бандлинк от релиза
+      parameters:
+      - name: releaseId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID релиза.
+      - name: linkId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID бандлинка.
+      responses:
+        '200':
+          description: Бандлинк откреплён.
+  /packages/types:
+    get:
+      tags:
+      - Packages
+      summary: Типы пакетов
+      responses:
+        '200':
+          description: Типы пакетов.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageTypesResponse'
+  /packages:
+    get:
+      tags:
+      - Packages
+      summary: Список пакетов
+      parameters:
+      - name: packageListId
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: lang
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Список пакетов.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackagesResponse'
+  /packages/my:
+    get:
+      tags:
+      - Packages
+      summary: Мои пакеты
+      parameters:
+      - name: packageListId
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Мои пакеты.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackagesResponse'
+  /packages/moderation:
+    get:
+      tags:
+      - Packages
+      summary: Пакеты на модерации
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /packages/{id}:
+    post:
+      tags:
+      - Packages
+      summary: Заказать пакет
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID пакета.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+                releaseId:
+                  type: integer
+                telegram:
+                  type: string
+                budget:
+                  type: number
+                releaseLink:
+                  type: string
+                currency:
+                  type: string
+                finReqId:
+                  type: integer
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /packages/my/{id}/pay:
+    post:
+      tags:
+      - Packages
+      summary: Оплатить пакет
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID пакета.
+      requestBody:
+        description: Тело запроса не подтверждено.
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /packages/my/{id}:
+    delete:
+      tags:
+      - Packages
+      summary: Удалить мой пакет
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+        description: ID пакета.
+      responses:
+        '200':
+          description: Пакет удалён.
+components:
+  securitySchemes:
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: authorization
+      description: Токен сессии (UUID), передаётся в заголовке authorization.
+  schemas:
+    AuthSignUpRequest:
+      type: object
+      properties:
+        login:
+          type: string
+          format: email
+          description: Дублирует email.
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          format: password
+        firstName:
+          type: string
+        lastName:
+          type: string
+        username:
+          type: string
+        phone:
+          type: string
+      required:
+      - login
+      - email
+      - password
+      - firstName
+      - lastName
+      - phone
+    AuthPasswordTokenResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            passwordToken:
+              type: string
+        statusCode:
+          type: integer
+    AuthSendConfirmCodeRequest:
+      type: object
+      properties:
+        login:
+          type: string
+          format: email
+        passwordToken:
+          type: string
+      required:
+      - login
+      - passwordToken
+    AuthConfirmCodeRequest:
+      type: object
+      properties:
+        login:
+          type: string
+          format: email
+        passwordToken:
+          type: string
+        code:
+          type: string
+      required:
+      - login
+      - passwordToken
+      - code
+    AuthChangePasswordRequest:
+      type: object
+      properties:
+        login:
+          type: string
+          format: email
+        passwordToken:
+          type: string
+        newPassword:
+          type: string
+          format: password
+      required:
+      - login
+      - passwordToken
+      - newPassword
+    AuthUpdatePasswordRequest:
+      type: object
+      properties:
+        oldPassword:
+          type: string
+          format: password
+        newPassword:
+          type: string
+          format: password
+        newPasswordRepeat:
+          type: string
+          format: password
+      required:
+      - oldPassword
+      - newPassword
+      - newPasswordRepeat
+    PackageType:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        nameEn:
+          type: string
+        parentId:
+          type: integer
+          nullable: true
+        shortName:
+          type: string
+    PackageTypesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PackageType'
+        statusCode:
+          type: integer
+          example: 200
+    PackagesResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items: {}
+        statusCode:
+          type: integer
+          example: 200
