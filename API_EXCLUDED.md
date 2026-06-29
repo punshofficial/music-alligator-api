@@ -31,3 +31,11 @@
 ## Finance
 
 - `POST /finance/transactions/create` — создание вывода средств; исключено из текущего покрытия и не тестируется.
+
+## Client
+
+- `POST /client/avatar` — загрузка аватара.
+- `DELETE /client/avatar` — удаление аватара.
+- `POST /client/bank_data` — изменение банковских реквизитов.
+- `POST /client/document` — загрузка клиентского документа.
+- `POST /documents/contracts` — подписание договора.

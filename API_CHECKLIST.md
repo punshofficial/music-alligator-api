@@ -10,7 +10,7 @@
 ## Auth
 
 - ✅ `GET /auth/authenticate`
-- 🟡 `POST /auth/sign_in`
+- ✅ `POST /auth/sign_in`
 
 ## Releases
 
@@ -78,14 +78,11 @@
 
 ## Client
 
-- 🟡 `GET /client` (404)
-- 🟡 `GET /client/contract_data` (404)
 - ✅ `GET /documents/contracts`
-- ⛔ `POST /client/avatar`
-- ⛔ `DELETE /client/avatar`
-- ⛔ `POST /client/bank_data`
-- ⛔ `POST /client/document`
-- ❌ `POST /documents/contracts`
+- ✅ `GET /documents/contracts/html`
+- ✅ `GET /documents/contracts/template`
+- ✅ `GET /documents/contracts/{contractId}/file`
+- ✅ `GET /documents/contracts/{contractId}/amendment`
 
 ## Support
 

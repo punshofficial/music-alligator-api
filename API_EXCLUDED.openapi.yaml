@@ -17,6 +17,8 @@ tags:
   description: Пакеты, исключённые из текущего покрытия
 - name: Finance
   description: Финансовые операции, исключённые из текущего покрытия
+- name: Client
+  description: Клиентские write endpoint'ы, исключённые из текущего покрытия
 paths:
   /auth/sign_up:
     post:
@@ -355,6 +357,77 @@ paths:
       responses:
         '200':
           description: Форма ответа не подтверждена.
+  /client/avatar:
+    post:
+      tags:
+      - Client
+      summary: Загрузить аватар
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+    delete:
+      tags:
+      - Client
+      summary: Удалить аватар
+      responses:
+        '200':
+          description: Аватар удалён.
+  /client/bank_data:
+    post:
+      tags:
+      - Client
+      summary: Сохранить банковские реквизиты
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientBankDataRequest'
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /client/document:
+    post:
+      tags:
+      - Client
+      summary: Загрузить документ
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                document:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
+  /documents/contracts:
+    post:
+      tags:
+      - Client
+      summary: Подписать договор
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContractSignRequest'
+      responses:
+        '200':
+          description: Форма ответа не подтверждена.
 components:
   securitySchemes:
     tokenAuth:
@@ -457,6 +530,25 @@ components:
       - oldPassword
       - newPassword
       - newPasswordRepeat
+    ClientBankDataRequest:
+      type: object
+      properties:
+        account:
+          type: string
+        bankName:
+          type: string
+        bankNumber:
+          type: string
+        correspondentAccount:
+          type: string
+    ContractSignRequest:
+      type: object
+      required:
+      - signature
+      properties:
+        signature:
+          type: string
+          description: Подпись в формате data URL.
     PackageType:
       type: object
       properties:

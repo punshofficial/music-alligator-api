@@ -52,6 +52,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AuthSignInResponse'
+        '400':
+          description: Ошибка входа.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /auth/authenticate:
     get:
       tags:
@@ -997,102 +1003,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FinanceBalanceResponse'
-  /client:
-    get:
-      tags:
-      - Client
-      summary: Данные клиента
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
-        '404':
-          description: Не найдено.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-  /client/avatar:
-    post:
-      tags:
-      - Client
-      summary: Загрузить аватар
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                image:
-                  type: string
-                  format: binary
-                  description: Файл аватара.
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
-    delete:
-      tags:
-      - Client
-      summary: Удалить аватар
-      responses:
-        '200':
-          description: Аватар удалён.
-  /client/contract_data:
-    get:
-      tags:
-      - Client
-      summary: Данные для договора
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
-        '404':
-          description: Не найдено.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-  /client/bank_data:
-    post:
-      tags:
-      - Client
-      summary: Сохранить банковские реквизиты
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                account:
-                  type: string
-                bankName:
-                  type: string
-                bankNumber:
-                  type: string
-                correspondentAccount:
-                  type: string
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
-  /client/document:
-    post:
-      tags:
-      - Client
-      summary: Загрузить документ
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                document:
-                  type: string
-                  format: binary
-                  description: PDF-документ.
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
   /documents/contracts:
     get:
       tags:
@@ -1105,19 +1015,69 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContractDocumentResponse'
-    post:
+  /documents/contracts/html:
+    get:
       tags:
       - Client
-      summary: Создать договор
-      requestBody:
-        description: Тело запроса не подтверждено.
-        content:
-          application/json:
-            schema:
-              type: object
+      summary: HTML договора
       responses:
         '200':
-          description: Форма ответа не подтверждена.
+          description: HTML-разметка договора.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContractHtmlResponse'
+  /documents/contracts/template:
+    get:
+      tags:
+      - Client
+      summary: PDF-шаблон договора
+      responses:
+        '200':
+          description: PDF-файл шаблона договора.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+  /documents/contracts/{contractId}/file:
+    get:
+      tags:
+      - Client
+      summary: PDF договора
+      parameters:
+      - name: contractId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: PDF-файл договора.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+  /documents/contracts/{contractId}/amendment:
+    get:
+      tags:
+      - Client
+      summary: PDF допсоглашения
+      parameters:
+      - name: contractId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: PDF-файл допсоглашения.
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
   /support:
     post:
       tags:
@@ -1315,6 +1275,16 @@ components:
         data:
           type: object
           properties:
+            login:
+              type: string
+              format: email
+            verified:
+              type: boolean
+            account:
+              $ref: '#/components/schemas/AuthAccount'
+            passwordToken:
+              type: string
+              nullable: true
             sessionToken:
               type: string
         statusCode:
@@ -1889,6 +1859,15 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/ContractDocument'
+        statusCode:
+          type: integer
+          example: 200
+    ContractHtmlResponse:
+      type: object
+      properties:
+        data:
+          type: string
+          description: HTML-разметка договора.
         statusCode:
           type: integer
           example: 200
