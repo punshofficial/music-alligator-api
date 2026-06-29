@@ -1,0 +1,1 @@
+npx @redocly/cli preview --product redoc

@@ -14,8 +14,6 @@ tags:
   description: Аутентификация
 - name: Releases
   description: Релизы и треки
-- name: Media
-  description: Универсальная загрузка медиа
 - name: Platforms
   description: Площадки и страны
 - name: Artists
@@ -223,9 +221,27 @@ paths:
                 startDate:
                   type: string
                   format: date
+                  nullable: true
                 endDate:
                   type: string
                   format: date
+                  nullable: true
+                startDateRelease:
+                  type: string
+                  format: date
+                  nullable: true
+                endDateRelease:
+                  type: string
+                  format: date
+                  nullable: true
+              example:
+                search: ''
+                limit: 10
+                skip: 0
+                startDate: null
+                endDate: null
+                startDateRelease: null
+                endDateRelease: null
       responses:
         '201':
           description: Релизы.
@@ -277,14 +293,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-  /releases/update/track:
-    get:
-      tags:
-      - Releases
-      summary: Обновление трека (служебный)
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
   /releases/{id}:
     parameters:
     - name: id
@@ -564,25 +572,10 @@ paths:
       responses:
         '200':
           description: Файл удалён.
-  /media/upload:
-    post:
-      tags:
-      - Media
-      summary: Универсальная загрузка медиа
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                file:
-                  type: string
-                  format: binary
-                  description: Медиафайл.
-      responses:
-        '200':
-          description: Форма ответа не подтверждена.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
   /platform/platforms/streaming:
     get:
       tags:
@@ -723,6 +716,10 @@ paths:
       responses:
         '200':
           description: Артист удалён.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
   /persons:
     get:
       tags:
@@ -801,14 +798,18 @@ paths:
       - Persons
       summary: Обновить участника
       requestBody:
-        description: Тело запроса не подтверждено.
+        required: true
         content:
           application/json:
             schema:
-              type: object
+              $ref: '#/components/schemas/PersonCreate'
       responses:
         '200':
-          description: Форма ответа не подтверждена.
+          description: Участник обновлён.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
     delete:
       tags:
       - Persons
@@ -816,6 +817,10 @@ paths:
       responses:
         '200':
           description: Участник удалён.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
   /labels:
     get:
       tags:
@@ -866,8 +871,12 @@ paths:
               required:
               - name
       responses:
-        '200':
-          description: Форма ответа не подтверждена.
+        '201':
+          description: Лейбл создан.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LabelCreateResponse'
   /labels/{id}:
     put:
       tags:
@@ -894,7 +903,11 @@ paths:
               - name
       responses:
         '200':
-          description: Форма ответа не подтверждена.
+          description: Лейбл обновлён.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
   /multi_links:
     post:
       tags:
@@ -1003,8 +1016,12 @@ paths:
             schema:
               $ref: '#/components/schemas/StatisticsRequest'
       responses:
-        '200':
-          description: Форма ответа не подтверждена.
+        '201':
+          description: Статистика.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatisticsResponse'
   /statistics/filters:
     get:
       tags:
@@ -1763,6 +1780,37 @@ components:
         statusCode:
           type: integer
           example: 200
+    StatisticsResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatisticsRow'
+        statusCode:
+          type: integer
+          example: 201
+    StatisticsRow:
+      type: object
+      properties:
+        count:
+          type: integer
+        dt_listen:
+          type: string
+          example: '2026-06-27 00:00:00'
+        id_m_list_streaming_platform:
+          type: integer
+        id_s_list_country:
+          type: integer
+        code_country:
+          type: string
+          example: RU
+        id_m_track:
+          type: integer
+        nm_track:
+          type: string
+        isrc:
+          type: string
     FinanceArtistFilter:
       type: object
       properties:
@@ -2883,9 +2931,16 @@ components:
             properties:
               field:
                 type: string
-                description: id_m_release, id_m_track, id_m_list_streaming_platform, id_s_list_country,
-                  ownEan.
-              value: {}
+                enum:
+                - id_m_release
+                - id_m_track
+                - id_m_list_streaming_platform
+                - id_s_list_country
+                - ownEan
+              value:
+                oneOf:
+                - type: integer
+                - type: string
         aggs:
           type: array
           items:
@@ -2893,7 +2948,12 @@ components:
             properties:
               field:
                 type: string
-                description: dt_listen, id_m_list_streaming_platform, id_m_release, id_m_track, id_s_list_country.
+                enum:
+                - dt_listen
+                - id_m_list_streaming_platform
+                - id_m_release
+                - id_m_track
+                - id_s_list_country
               format:
                 type: string
                 example: day

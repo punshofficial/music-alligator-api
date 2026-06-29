@@ -19,15 +19,15 @@
 
 ## Releases
 
-- ✅ `POST /releases` — список и поиск по `search`, 201-схема добавлена
+- ✅ `POST /releases` — список и поиск по `search`, 201-схема добавлена; пример запроса сверён с фронтом: `search`, `limit`, `skip`, `startDate`, `endDate`, `startDateRelease`, `endDateRelease`
 - ✅ `POST /releases/create` — создан тестовый draft-релиз; после проверок удалён
 - ✅ `GET /releases/filters` — 200/400-схемы добавлены
-- ⛔ `GET /releases/update/track` — служебный endpoint
+- ✅ `GET /releases/update/track` — отсутствует на текущем API-хосте, удалён из OpenAPI
 - ✅ `GET /releases/{id}` — 200-схема подтверждена по `releaseId` из списка
 - ✅ `PUT /releases/{id}` — проверено на тестовом draft-релизе
 - ✅ `Release/TrackResponse` — ключи ответа тестового релиза сверены со схемами; добавлены `client`, `text`, `isFromMigration`, `artists[].platforms`
 - ✅ `DELETE /releases/{id}` — проверено на тестовом релизе, 200 `StatusResponse`; последующий GET вернул 404 `RELEASE_NOT_FOUND`
-- ⛔ `PUT /releases/{id}/status/moderate`
+- 🟡 `PUT /releases/{id}/status/moderate` — не вызывали; владелец подтвердил как рабочий
 - ✅ `GET /ddex/release/{id}` — статусы выгрузки по площадкам, проверено на draft/uploaded/released релизах
 - ✅ `POST /releases/{id}/cover` — проверено на тестовом релизе, multipart `file`, 201 `MediaUploadResponse`
 - ✅ `POST /releases/{id}/tracks/order` — проверено на тестовом релизе, `order: [{ trackOrder, trackId }]`, 201 `StatusResponse`
@@ -36,12 +36,8 @@
 - ✅ `streamingPlatforms` — при сохранении тестового релиза выбранные площадки могут дополняться связанными ID (например, Shazam/KION Music)
 - ✅ `DELETE /releases/{id}/tracks/{trackId}` — проверено на втором треке тестового релиза, 200 `StatusResponse`
 - ✅ `POST /releases/{id}/tracks/{trackId}/upload` — проверено на тестовом релизе, multipart `file`, 201 `MediaUploadResponse`; после WAV сервер добавляет mp3
-- ⛔ `DELETE /releases/{id}/tracks/{trackId}/upload`
+- ✅ `DELETE /releases/{id}/tracks/{trackId}/upload` — проверено на временном тестовом релизе, 200 `StatusResponse`; media[] очищается
 - ✅ `POST /releases/{id}/tracks` — создан второй трек в тестовом релизе, 201 `CreateTrackResponse`
-
-## Media
-
-- ❌ `POST /media/upload`
 
 ## Platforms
 
@@ -54,21 +50,21 @@
 - ✅ `GET /artists` — 200-схема добавлена
 - ✅ `POST /artists` — создан тестовый артист
 - ✅ `PUT /artists/{id}` — проверено на тестовом артисте, Apple Music/Spotify с пустым `platformId`
-- ⛔ `DELETE /artists/{id}`
+- ✅ `DELETE /artists/{id}` — тестовый артист Codex удалён, 200 `StatusResponse`
 
 ## Persons
 
 - ✅ `GET /persons` — 200-схема добавлена
 - ✅ `GET /persons/person-data` — 200-схема добавлена
 - ✅ `POST /persons` — создан тестовый участник
-- ❌ `PUT /persons/{id}` — тестировать только на тестовой сущности
-- ⛔ `DELETE /persons/{id}`
+- ✅ `PUT /persons/{id}` — проверено на тестовой персоне Codex, 200 `StatusResponse`
+- ✅ `DELETE /persons/{id}` — тестовая персона Codex удалена, 200 `StatusResponse`
 
 ## Labels
 
 - ✅ `GET /labels` — 200-схема добавлена
 - ✅ `POST /labels` — создан тестовый лейбл
-- ❌ `PUT /labels/{id}` — тестировать только на тестовой сущности
+- ✅ `PUT /labels/{id}` — проверено на тестовом лейбле Codex, 200 `StatusResponse`
 
 ## Bandlinks
 
@@ -80,8 +76,9 @@
 
 ## Statistics
 
-- 🟡 `GET /statistics/filters` — 200-схема добавлена, низкий приоритет
-- 🟡 `POST /statistics` — read-like, низкий приоритет
+- ✅ `GET /statistics/filters` — подтверждено: `platformIds`, `countryIds`
+- ✅ `POST /statistics` — подтверждено: `201`, агрегированные строки по `aggs`
+- ✅ `POST /statistics` по треку — проверено с `filters: [{ field: "id_m_track", value: 541524 }]`, возвращает дневные `count`, `dt_listen`, `id_m_track`, `nm_track`, `isrc`
 
 ## Finance
 
