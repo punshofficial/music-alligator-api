@@ -256,6 +256,10 @@ paths:
       responses:
         '200':
           description: Релиз отправлен на модерацию.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusResponse'
   /ddex/release/{id}:
     get:
       tags:
