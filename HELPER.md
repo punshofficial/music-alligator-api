@@ -1,1 +1,1 @@
-npx @redocly/cli preview --product redoc
+запуск Redoc: npx @redocly/cli preview --product redoc
