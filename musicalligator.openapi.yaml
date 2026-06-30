@@ -2054,14 +2054,6 @@ components:
           description: ID поджанра. Если выбран поджанр, genreId содержит ID родительского жанра.
       required:
       - genreId
-    NamedRef:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-      description: Краткая ссылка на сущность (подтверждены id и name).
     ArtistRef:
       type: object
       properties:
@@ -2458,8 +2450,9 @@ components:
           type: string
           description: Путь к обложке в хранилище.
         client:
-          $ref: '#/components/schemas/ClientRef'
           nullable: true
+          allOf:
+          - $ref: '#/components/schemas/ClientRef'
         artist:
           type: integer
           description: ID основного артиста (дублирует MAIN из artists[]).
