@@ -1587,7 +1587,6 @@ components:
           releaseId:
             type: integer
             deprecated: true
-            description: Наблюдаемое ограничение API: фильтр releaseId возвращает 400 Bad Request, не использовать в MCP tools до уточнения.
     FinanceDetailedReportsResponse:
       type: object
       properties:
@@ -2424,7 +2423,6 @@ components:
         labelId:
           type: integer
           deprecated: true
-          description: Наблюдаемое ограничение API: запись labelId в create/update релиза возвращает 400 Bad Request, не использовать в MCP tools до уточнения payload кабинета.
           example: 41510
         articleLabel:
           type: string
@@ -2511,8 +2509,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Track'
-          description: Полные объекты треков (не ссылки). Наблюдаемое поведение API: PUT /releases/{id}
-            не сохраняет изменения внутри tracks[] надёжно; для изменения трека использовать PUT
+          description: Для изменения трека использовать PUT
             /releases/{id}/tracks/{trackId}.
       required:
       - releaseId
