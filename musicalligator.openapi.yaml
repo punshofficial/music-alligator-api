@@ -1586,6 +1586,8 @@ components:
         properties:
           releaseId:
             type: integer
+            deprecated: true
+            description: Наблюдаемое ограничение API: фильтр releaseId возвращает 400 Bad Request, не использовать в MCP tools до уточнения.
     FinanceDetailedReportsResponse:
       type: object
       properties:
@@ -2064,7 +2066,9 @@ components:
           type: string
           enum:
           - MAIN
+          - ADVANCED
           - FEAT
+          description: MAIN — единственный главный артист; ADVANCED — дополнительный артист через запятую; FEAT — артист при участии. Порядок элементов artists[] значим и задаёт порядок отображения.
           example: MAIN
         platforms:
           type: array
@@ -2419,6 +2423,8 @@ components:
           example: AURA MUSIC
         labelId:
           type: integer
+          deprecated: true
+          description: Наблюдаемое ограничение API: запись labelId в create/update релиза возвращает 400 Bad Request, не использовать в MCP tools до уточнения payload кабинета.
           example: 41510
         articleLabel:
           type: string
@@ -2505,7 +2511,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Track'
-          description: Полные объекты треков (не ссылки).
+          description: Полные объекты треков (не ссылки). Наблюдаемое поведение API: PUT /releases/{id}
+            не сохраняет изменения внутри tracks[] надёжно; для изменения трека использовать PUT
+            /releases/{id}/tracks/{trackId}.
       required:
       - releaseId
       - title
