@@ -2283,6 +2283,7 @@ components:
           example: 908312
         title:
           type: string
+          description: Название трека. Для изменения использовать PUT /releases/{id}/tracks/{trackId}; PUT /releases/{id} не обновляет это поле.
           example: Pentagramma
         trackVersion:
           type: string
@@ -2369,6 +2370,7 @@ components:
           example: 362233
         title:
           type: string
+          description: Название релиза. PUT /releases/{id} изменяет только название релиза и не изменяет title треков.
           example: Pentagramma
         releaseType:
           type: string
@@ -2553,8 +2555,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Track'
-          description: Для изменения трека использовать PUT
-            /releases/{id}/tracks/{trackId}.
+          description: Массив треков в ответе. PUT /releases/{id} не применяет изменения полей треков из этого массива; для изменения трека использовать PUT /releases/{id}/tracks/{trackId}.
       required:
       - releaseId
       - title
@@ -2562,9 +2563,12 @@ components:
       - releaseDate
       - genre
       - artists
-      description: Тело PUT /releases/{id}. Для SINGLE с одним треком поля artists, title, artist,
+      description: >
+        Тело PUT /releases/{id}. Для SINGLE с одним треком поля artists, title, artist,
         trackVersion, advArtists, featArtists, genres, additionalGenres и genre у релиза и трека
-        должны совпадать. Поле _single в ответе GET не возвращается.
+        должны совпадать. PUT /releases/{id} не синхронизирует release.title с tracks[0].title:
+        пустой или непустой title трека не меняется при изменении title релиза, а явно переданный
+        tracks[0].title в этом payload не применяется. Поле _single в ответе GET не возвращается.
     TrackResponse:
       description: 'Объект трека в ответе: Track плюс серверные поля.'
       allOf:
