@@ -2,8 +2,7 @@ openapi: 3.0.3
 info:
   title: MusicAlligator API
   version: 0.1.0
-  description: Спецификация MusicAlligator API. Реконструирована по наблюдаемым запросам и ответам; неподтверждённые
-    места помечены в описаниях.
+  description: Спецификация MusicAlligator API.
 servers:
 - url: https://v2api.musicalligator.ru/api
   description: Production
@@ -260,6 +259,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatusResponse'
+        '400':
+          description: Ошибка валидации релиза.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
   /ddex/release/{id}:
     get:
       tags:
@@ -1194,6 +1199,7 @@ components:
         message:
           type: string
         errors:
+          description: Код ошибки, массив кодов или объект с деталями. Возможные коды включают RELEASE_NO_GENRE и RELEASE_INCORRECT_STREAMING_PLATFORMS.
           oneOf:
           - type: string
           - type: array
@@ -2232,11 +2238,11 @@ components:
           - UPLOADED
           - WAITING_FOR_DELIVERY
           - ERROR
-          description: Статус выгрузки. Фронт приводит updated к uploaded.
+          description: Статус выгрузки. Значение updated отображается как uploaded.
         userError:
           type: string
           nullable: true
-      description: Элемент статуса выгрузки релиза. Поля восстановлены по frontend-коду.
+      description: Элемент статуса выгрузки релиза.
     ReleaseUploadStatusesResponse:
       type: object
       properties:
@@ -2291,7 +2297,7 @@ components:
           description: Дополнительные жанры. Если выбран поджанр, элемент передаётся как { genreId, subGenreId }.
         language:
           type: integer
-          description: ID языка (например, 7 = русский).
+          description: ID языка из /releases/filters.
           example: 7
         ownIsrc:
           type: string
@@ -2398,6 +2404,7 @@ components:
           type: string
           format: date
           nullable: true
+          description: Оригинальная дата релиза. Для очистки можно передать null.
         presaveDate:
           type: string
           format: date
@@ -2419,10 +2426,11 @@ components:
           description: Дополнительные жанры. Если выбран поджанр, элемент передаётся как { genreId, subGenreId }.
         label:
           type: string
+          description: Название выбранного лейбла в ответе GET. При сохранении выбранный лейбл задаётся через labelId.
           example: AURA MUSIC
         labelId:
           type: integer
-          deprecated: true
+          description: ID лейбла из /labels. Принимается в PUT /releases/{id} и возвращается в GET /releases/{id}.
           example: 41510
         articleLabel:
           type: string
@@ -2474,8 +2482,19 @@ components:
           type: array
           items:
             type: integer
-          description: ID площадок из /platform/platforms/streaming. При сохранении список может дополняться
-            связанными площадками. Некорректный набор возвращает RELEASE_INCORRECT_STREAMING_PLATFORMS.
+          description: >
+            ID площадок из /platform/platforms/streaming. Справочник площадок является общим; допустимый
+            список для релиза зависит от releaseType, levelPlan, стран, жанра релиза, жанров треков,
+            языков треков и связанных площадок. Список синхронизирует пары Apple Music/Shazam,
+            Yandex Music/Kion Music и Facebook/Facebook Instagram; YouTube Content ID требует YouTube
+            Music. START_V2 ограничивается площадками 193, 195, 196, 197 и 689; STANDARD-планы исключают
+            UGC/fingerprint-площадки 199, 220, 264, 269, 280 и 615. При выборе отдельных стран список
+            исключает 218, 224, 229, 234, 252, 266 и 289. Beatport, Mixupload, Beatsource и Traxsource
+            доступны только для жанров категорий Dance / Electronic и Bass Music на релизе и треках;
+            Music Worx доступен для категорий Dance / Electronic, Hip-Hop / R&B, Reggae/Dub и Latin;
+            Facebook Fingerprinting, Facebook Video Fingerprinting и YouTube Content ID недоступны для
+            genreId 183 и 192. Backend валидирует итоговый список и возвращает
+            RELEASE_INCORRECT_STREAMING_PLATFORMS для недопустимых комбинаций.
         countries:
           type: array
           items:
@@ -2520,7 +2539,7 @@ components:
       - artists
       description: Тело PUT /releases/{id}. Для SINGLE с одним треком поля artists, title, artist,
         trackVersion, advArtists, featArtists, genres, additionalGenres и genre у релиза и трека
-        должны совпадать. Фронтовый флаг _single в ответе GET не возвращается.
+        должны совпадать. Поле _single в ответе GET не возвращается.
     TrackResponse:
       description: 'Объект трека в ответе: Track плюс серверные поля.'
       allOf:
@@ -2737,6 +2756,7 @@ components:
       description: Справочник ролей и инструментов.
     StreamingPlatform:
       type: object
+      description: Элемент общего справочника площадок. Справочник не является готовым списком площадок для конкретного релиза.
       properties:
         id:
           type: integer
@@ -2750,6 +2770,7 @@ components:
           nullable: true
         releaseTypes:
           type: array
+          description: Типы релизов из общего справочника площадок. Этого поля недостаточно, чтобы определить допустимый список streamingPlatforms для PUT /releases/{id}.
           items:
             $ref: '#/components/schemas/ReleaseTypeRef'
         domains:
