@@ -2073,7 +2073,7 @@ components:
           - MAIN
           - ADVANCED
           - FEAT
-          description: MAIN — единственный главный артист; ADVANCED — дополнительный артист через запятую; FEAT — артист при участии. Порядок элементов artists[] значим и задаёт порядок отображения.
+          description: MAIN — единственный главный артист; ADVANCED — дополнительный основной артист, отображается через запятую после MAIN; FEAT — артист при участии.
           example: MAIN
         platforms:
           type: array
@@ -2337,6 +2337,11 @@ components:
           description: Только для CLIP.
         artists:
           type: array
+          description: >
+            Артисты трека. Допустим ровно один MAIN. Дополнительные основные артисты передаются
+            как ADVANCED; порядок ADVANCED задаёт порядок артистов через запятую после MAIN.
+            Артисты при участии передаются как FEAT; порядок FEAT задаёт порядок отображения
+            внутри блока feat.
           items:
             $ref: '#/components/schemas/ArtistRef'
         persons:
@@ -2467,11 +2472,31 @@ components:
           - $ref: '#/components/schemas/ClientRef'
         artist:
           type: integer
-          description: ID основного артиста (дублирует MAIN из artists[]).
+          description: ID единственного MAIN-артиста. Второй и последующие основные артисты передаются в advArtists.
           example: 88029
+        advArtists:
+          type: array
+          items:
+            type: integer
+          description: ID дополнительных основных артистов. Порядок массива задаёт порядок отображения через запятую после MAIN.
+          example:
+          - 132050
+          - 132934
+        featArtists:
+          type: array
+          items:
+            type: integer
+          description: ID артистов при участии. Порядок массива задаёт порядок отображения в блоке feat.
+          example:
+          - 130041
         artists:
           type: array
           minItems: 1
+          description: >
+            Артисты релиза с ролями. Массив должен быть согласован с artist, advArtists и
+            featArtists: один элемент MAIN соответствует artist, элементы ADVANCED соответствуют
+            advArtists, элементы FEAT соответствуют featArtists. Порядок передачи: ADVANCED
+            в порядке advArtists, затем FEAT в порядке featArtists, затем MAIN.
           items:
             $ref: '#/components/schemas/ArtistRef'
         persons:
