@@ -2510,18 +2510,21 @@ components:
           items:
             type: integer
           description: >
-            ID площадок из /platform/platforms/streaming. Справочник площадок является общим; допустимый
-            список для релиза зависит от releaseType, levelPlan, стран, жанра релиза, жанров треков,
-            языков треков и связанных площадок. Список синхронизирует пары Apple Music/Shazam,
-            Yandex Music/Kion Music и Facebook/Facebook Instagram; YouTube Content ID требует YouTube
-            Music. START_V2 ограничивается площадками 193, 195, 196, 197 и 689; STANDARD-планы исключают
-            UGC/fingerprint-площадки 199, 220, 264, 269, 280 и 615. При выборе отдельных стран список
-            исключает 218, 224, 229, 234, 252, 266 и 289. Beatport, Mixupload, Beatsource и Traxsource
-            доступны только для жанров категорий Dance / Electronic и Bass Music на релизе и треках;
-            Music Worx доступен для категорий Dance / Electronic, Hip-Hop / R&B, Reggae/Dub и Latin;
-            Facebook Fingerprinting, Facebook Video Fingerprinting и YouTube Content ID недоступны для
-            genreId 183 и 192. Backend валидирует итоговый список и возвращает
-            RELEASE_INCORRECT_STREAMING_PLATFORMS для недопустимых комбинаций.
+            ID площадок. Подтверждено по бандлу фронтенда и живому API: экран площадок релиза строится
+            по GET /platform/platforms/streaming?withProvidersOnly=true — площадки без провайдера
+            доставки backend отклоняет (RELEASE_INCORRECT_STREAMING_PLATFORMS на весь список).
+            Дальше фронт фильтрует по releaseTypes (видео-площадки только для CLIP), по языкам треков
+            (Juno Records 233 и Nightlife Music 254 — только язык 7/EN; Beatport-семейство 213, 272,
+            284, 288 не принимает языки 3, 10, 12, 30, 33, 34, 37, 57, 59, 63, 64) и по жанрам
+            (Beatport-семейство — только категории Dance / Electronic и Bass Music на релизе и треках;
+            Music Worx 246 — Dance / Electronic, Hip-Hop / R&B, Reggae/Dub, Latin; fingerprint-площадки
+            199, 219, 615 недоступны для genreId 183 и 192). UGC/fingerprint-площадки
+            (199, 220, 264, 269, 280, 615 — константа M9 фронта) — отдельная секция с собственным
+            «Select all»: кнопка «выбрать все» их НЕ включает; на Start/Standard-планах они недоступны
+            (TikTok доступен для TIKTOK_SOUND). START_V2 ограничен площадками 193, 195, 196, 197, 689.
+            При выборе отдельных стран исключаются 218, 224, 229, 234, 252, 266, 289. Связанные пары
+            синхронизируются по ID: 282/290 (Apple Music/Shazam), 196/689 (Yandex/KION),
+            615/220 (Facebook/Instagram); YouTube Content ID 199 требует YouTube Music 200.
         countries:
           type: array
           items:
